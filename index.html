@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCSportwagen – Premium Sportwagen Vermietung Bochum</title>
+<meta name="description" content="Sportwagen mieten in Bochum. BMW M4 Competition, Mercedes C63s AMG, Audi RS3, Audi R8. 24/7 Service. Ab 180€/Tag.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080808;--surface:#111111;--surface2:#181818;
+  --red:#CC1111;--red-glow:rgba(204,17,17,.25);
+  --white:#fff;--muted:#777;--border:rgba(255,255,255,.07);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:'Inter',sans-serif;overflow-x:hidden}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--red)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:22px 60px;display:flex;align-items:center;justify-content:space-between;transition:all .4s}
+nav.s{background:rgba(8,8,8,.96);backdrop-filter:blur(20px);padding:14px 60px;border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-mc{width:42px;height:42px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue';font-size:17px;letter-spacing:1px;flex-shrink:0}
+.nav-txt{font-family:'Bebas Neue';font-size:20px;letter-spacing:3px;line-height:1}
+.nav-sub{font-size:9px;letter-spacing:2.5px;color:var(--muted);text-transform:uppercase}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{color:rgba(255,255,255,.65);text-decoration:none;font-size:12px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;transition:color .2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--red);transform:scaleX(0);transition:transform .3s}
+.nav-links a:hover{color:#fff}.nav-links a:hover::after{transform:scaleX(1)}
+.nav-cta{background:var(--red);color:#fff;text-decoration:none;padding:10px 22px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--red);transition:all .3s}
+.nav-cta:hover{background:transparent;color:var(--red)}
+
+/* HERO */
+.hero{position:relative;height:100vh;min-height:680px;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('images/bmw-m4.jpg') center/cover no-repeat;transform:scale(1.04);transition:transform 12s ease}
+.hero-bg.loaded{transform:scale(1)}
+.hero-ol{position:absolute;inset:0;background:linear-gradient(110deg,rgba(8,8,8,.93) 0%,rgba(8,8,8,.65) 55%,rgba(8,8,8,.25) 100%)}
+.hero-ol2{position:absolute;bottom:0;left:0;right:0;height:220px;background:linear-gradient(to top,var(--bg),transparent)}
+.hero-content{position:relative;z-index:2;padding:0 60px;max-width:860px}
+.hero-eye{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--red);margin-bottom:20px}
+.hero-eye::before{content:'';display:block;width:36px;height:1px;background:var(--red)}
+h1{font-family:'Bebas Neue';font-size:clamp(72px,10vw,136px);line-height:.9;letter-spacing:3px;margin-bottom:24px}
+h1 span{color:var(--red)}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.6);max-width:460px;margin-bottom:44px;line-height:1.85;font-weight:300}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-r{background:var(--red);color:#fff;text-decoration:none;padding:15px 34px;font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;display:inline-flex;align-items:center;gap:9px;transition:all .3s;border:1px solid var(--red)}
+.btn-r:hover{background:transparent;color:var(--red);box-shadow:0 0 30px var(--red-glow)}
+.btn-o{color:#fff;text-decoration:none;padding:15px 34px;font-size:12px;font-weight:500;letter-spacing:2px;text-transform:uppercase;border:1px solid rgba(255,255,255,.2);transition:all .3s}
+.btn-o:hover{border-color:#fff;background:rgba(255,255,255,.04)}
+.hero-scroll{position:absolute;bottom:36px;left:60px;z-index:2;display:flex;align-items:center;gap:10px;font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--muted)}
+.scroll-line{width:36px;height:1px;background:rgba(255,255,255,.2);overflow:hidden;position:relative}
+.scroll-line::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--red);animation:sl 2s ease infinite}
+@keyframes sl{to{left:100%}}
+.hero-badge{position:absolute;right:60px;bottom:80px;z-index:2;text-align:right}
+.hb-lbl{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.hb-val{font-family:'Bebas Neue';font-size:56px;color:var(--red);line-height:1}
+.hb-unit{font-size:13px;color:var(--muted)}
+
+/* STATS */
+.stats{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:44px 60px}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{text-align:center;padding:16px;position:relative}
+.stat:not(:last-child)::after{content:'';position:absolute;right:0;top:10%;height:80%;width:1px;background:var(--border)}
+.stat-n{font-family:'Bebas Neue';font-size:48px;line-height:1;color:var(--red);margin-bottom:4px}
+.stat-l{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+/* SECTION HEADER */
+.sh{text-align:center;margin-bottom:60px}
+.sh-eye{display:inline-flex;align-items:center;gap:10px;font-size:10px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--red);margin-bottom:14px}
+.sh-eye::before,.sh-eye::after{content:'';display:block;width:28px;height:1px;background:var(--red)}
+.sh h2{font-family:'Bebas Neue';font-size:clamp(48px,6vw,80px);letter-spacing:3px;line-height:1;margin-bottom:16px}
+.sh p{font-size:14px;color:var(--muted);max-width:500px;margin:0 auto;line-height:1.85}
+
+/* FLEET */
+.fleet{padding:100px 0;background:var(--bg)}
+.fleet-hdr{padding:0 60px}
+.fleet-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px}
+.car{position:relative;overflow:hidden;cursor:pointer}
+.car:first-child{grid-column:1/-1;aspect-ratio:21/9}
+.car:not(:first-child){aspect-ratio:16/9}
+.car img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.25,.46,.45,.94)}
+.car:hover img{transform:scale(1.06)}
+.car-ol{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,8,.96) 0%,rgba(8,8,8,.45) 45%,transparent 75%);transition:all .4s}
+.car:hover .car-ol{background:linear-gradient(to top,rgba(8,8,8,.98) 0%,rgba(8,8,8,.6) 55%,rgba(8,8,8,.15) 100%)}
+.car-info{position:absolute;bottom:0;left:0;right:0;padding:28px 32px}
+.car-badge{display:inline-flex;align-items:center;background:var(--red);color:#fff;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 10px;margin-bottom:8px}
+.car-name{font-family:'Bebas Neue';font-size:clamp(26px,3.5vw,42px);letter-spacing:2px;line-height:1;margin-bottom:6px}
+.car-spec{font-size:11px;color:var(--muted);margin-bottom:16px;letter-spacing:.5px}
+.car-prices{display:flex;gap:20px;flex-wrap:wrap}
+.cp{display:flex;flex-direction:column;gap:2px}
+.cp-l{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);font-weight:500}
+.cp-v{font-family:'Bebas Neue';font-size:22px;color:var(--red);line-height:1}
+.cp-s{font-size:10px;color:var(--muted);font-family:'Inter'}
+
+/* SERVICES */
+.services{padding:100px 60px;background:var(--surface)}
+.svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px}
+.svc{background:var(--surface2);padding:52px 44px;position:relative;overflow:hidden;border:1px solid var(--border);transition:border-color .4s}
+.svc:hover{border-color:rgba(204,17,17,.3)}
+.svc::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--red);transition:height .4s}
+.svc:hover::before{height:100%}
+.svc-num{position:absolute;top:20px;right:32px;font-family:'Bebas Neue';font-size:80px;color:rgba(255,255,255,.025);line-height:1;pointer-events:none}
+.svc-icon{width:52px;height:52px;background:rgba(204,17,17,.1);border:1px solid rgba(204,17,17,.3);display:flex;align-items:center;justify-content:center;margin-bottom:24px;font-size:22px}
+.svc h3{font-family:'Bebas Neue';font-size:30px;letter-spacing:2px;margin-bottom:14px}
+.svc-desc{font-size:13px;color:var(--muted);line-height:1.85;margin-bottom:24px}
+.svc-list{list-style:none;display:flex;flex-direction:column;gap:9px}
+.svc-list li{display:flex;align-items:center;gap:9px;font-size:12px;color:rgba(255,255,255,.7)}
+.svc-list li::before{content:'→';color:var(--red);flex-shrink:0}
+
+/* BOOKING */
+.booking{padding:100px 60px;background:var(--bg);position:relative;overflow:hidden}
+.booking::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;background:radial-gradient(circle,rgba(204,17,17,.07) 0%,transparent 70%);pointer-events:none}
+.booking-inner{max-width:780px;margin:0 auto;text-align:center;position:relative}
+.booking-inner h2{font-family:'Bebas Neue';font-size:clamp(56px,8vw,100px);letter-spacing:4px;line-height:.92;margin-bottom:20px}
+.booking-inner h2 span{color:var(--red)}
+.booking-inner p{font-size:14px;color:var(--muted);line-height:1.85;margin-bottom:44px}
+.booking-btns{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:56px}
+.btn-wa{background:#25D366;color:#fff;text-decoration:none;padding:17px 38px;font-size:13px;font-weight:700;letter-spacing:1.5px;display:inline-flex;align-items:center;gap:9px;transition:all .3s}
+.btn-wa:hover{background:#20ba5c;transform:translateY(-2px);box-shadow:0 8px 40px rgba(37,211,102,.25)}
+.btn-tel{color:#fff;text-decoration:none;padding:17px 38px;font-size:13px;font-weight:500;letter-spacing:1.5px;display:inline-flex;align-items:center;gap:9px;border:1px solid var(--border);transition:all .3s}
+.btn-tel:hover{border-color:#fff;background:rgba(255,255,255,.04)}
+.contact-row{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;border-top:1px solid var(--border);padding-top:44px}
+.ci{padding:22px;text-align:center}
+.ci-icon{font-size:22px;margin-bottom:10px;display:block}
+.ci-lbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.ci-val{font-size:13px;font-weight:500}
+.ci-val a{color:#fff;text-decoration:none;transition:color .2s}
+.ci-val a:hover{color:var(--red)}
+
+/* SOCIAL */
+.social{padding:80px 60px;background:var(--surface);border-top:1px solid var(--border)}
+.social-row{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:900px;margin:0 auto}
+.soc-card{display:flex;align-items:center;gap:18px;padding:28px;background:var(--surface2);border:1px solid var(--border);text-decoration:none;color:#fff;transition:all .3s}
+.soc-card:hover{border-color:var(--red);transform:translateY(-2px)}
+.soc-icon{font-size:32px;flex-shrink:0}
+.soc-name{font-family:'Bebas Neue';font-size:20px;letter-spacing:2px;margin-bottom:3px}
+.soc-handle{font-size:12px;color:var(--muted)}
+.soc-stat{margin-left:auto;text-align:right}
+.soc-count{font-family:'Bebas Neue';font-size:28px;color:var(--red);line-height:1}
+.soc-cl{font-size:10px;color:var(--muted);letter-spacing:1px}
+
+/* IMPRESSUM */
+.imp{padding:70px 60px;background:var(--bg);border-top:1px solid var(--border)}
+.imp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;max-width:860px}
+.imp-block h4{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:14px}
+.imp-block p{font-size:12px;color:var(--muted);line-height:2.1}
+.imp-block a{color:var(--muted);text-decoration:none;transition:color .2s}
+.imp-block a:hover{color:#fff}
+
+/* FOOTER */
+footer{background:var(--surface);border-top:1px solid var(--border);padding:56px 60px 36px}
+.ft{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:44px;padding-bottom:44px;border-bottom:1px solid var(--border);gap:40px;flex-wrap:wrap}
+.ft-logo{display:flex;align-items:center;gap:14px}
+.ft-mc{width:50px;height:50px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue';font-size:20px}
+.ft-name{font-family:'Bebas Neue';font-size:24px;letter-spacing:3px}
+.ft-name span{display:block;font-family:'Inter';font-size:10px;letter-spacing:2.5px;color:var(--muted);font-weight:400;text-transform:uppercase}
+.ft-nav{display:flex;gap:52px;flex-wrap:wrap}
+.ft-col h4{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--red);margin-bottom:16px;font-weight:600}
+.ft-col ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.ft-col a{color:var(--muted);text-decoration:none;font-size:12px;transition:color .2s}
+.ft-col a:hover{color:#fff}
+.ft-bottom{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--muted);flex-wrap:wrap;gap:12px}
+.ft-bottom a{color:var(--muted);text-decoration:none;transition:color .2s}
+.ft-bottom a:hover{color:#fff}
+
+/* FLOATING WA */
+.wa-float{position:fixed;bottom:24px;right:24px;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;z-index:500;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:all .3s;animation:pwa 2.5s ease infinite}
+.wa-float:hover{transform:scale(1.12);box-shadow:0 8px 40px rgba(37,211,102,.5)}
+@keyframes pwa{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.4)}50%{box-shadow:0 4px 36px rgba(37,211,102,.6),0 0 0 8px rgba(37,211,102,.08)}}
+
+/* REVEAL */
+.r{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.r.v{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+/* MOBILE */
+@media(max-width:860px){
+  nav{padding:14px 20px}nav.s{padding:12px 20px}
+  .nav-links{display:none}
+  .hero-content{padding:0 20px}
+  .hero-scroll,.hero-badge{display:none}
+  .stats{padding:36px 20px}.stats-grid{grid-template-columns:repeat(2,1fr)}
+  .fleet{padding:60px 0}.fleet-hdr{padding:0 20px}
+  .fleet-grid{grid-template-columns:1fr}.car:first-child{aspect-ratio:16/9}
+  .car-info{padding:18px 18px}
+  .services{padding:60px 20px}.svc-grid{grid-template-columns:1fr}.svc{padding:36px 28px}
+  .booking{padding:60px 20px}.contact-row{grid-template-columns:1fr}
+  .social{padding:60px 20px}.social-row{grid-template-columns:1fr}
+  .imp{padding:56px 20px}.imp-grid{grid-template-columns:1fr;gap:32px}
+  footer{padding:40px 20px 28px}.ft{flex-direction:column}.ft-nav{flex-direction:column;gap:28px}
+  .ft-bottom{flex-direction:column;text-align:center}
+  .sh{padding:0 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/4917664872989" class="wa-float" target="_blank" rel="noopener">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <div class="nav-mc">MC</div>
+    <div>
+      <div class="nav-txt">MCSPORTWAGEN</div>
+      <div class="nav-sub">Sportwagen Vermietung · Bochum</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#flotte">Flotte</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#preise">Preise</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+  <a href="https://wa.me/4917664872989" class="nav-cta" target="_blank">Jetzt Buchen</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-ol"></div>
+  <div class="hero-ol2"></div>
+  <div class="hero-content">
+    <div class="hero-eye">Premium Sportwagen Vermietung Bochum</div>
+    <h1>POWER.<br>PRESTIGE.<br><span>BOCHUM.</span></h1>
+    <p class="hero-sub">BMW M4, Mercedes C63s AMG, Audi RS3 & R8 — exklusiv für Dich. Keine Kompromisse. 24/7 Kundenservice.</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/4917664872989" class="btn-r" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Jetzt Buchen
+      </a>
+      <a href="#flotte" class="btn-o">Unsere Flotte ↓</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div>Scroll</div>
+  <div class="hero-badge">
+    <div class="hb-lbl">Ab nur</div>
+    <div class="hb-val">180</div>
+    <div class="hb-unit">€ / Tag</div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="stats-grid">
+    <div class="stat r"><div class="stat-n" data-to="16.3K">0</div><div class="stat-l">TikTok Follower</div></div>
+    <div class="stat r d1"><div class="stat-n" data-to="710.6K">0</div><div class="stat-l">TikTok Likes</div></div>
+    <div class="stat r d2"><div class="stat-n" data-to="4">0</div><div class="stat-l">Premium Fahrzeuge</div></div>
+    <div class="stat r d3"><div class="stat-n" data-to="24/7">0</div><div class="stat-l">Kundenservice</div></div>
+  </div>
+</section>
+
+<!-- FLEET -->
+<section class="fleet" id="flotte">
+  <div class="fleet-hdr">
+    <div class="sh r">
+      <div class="sh-eye">Unsere Fahrzeuge</div>
+      <h2>DIE FLOTTE</h2>
+      <p>Vier außergewöhnliche Sportwagen. Jedes Fahrzeug ein Erlebnis. 200 Freikilometer täglich inklusive.</p>
+    </div>
+  </div>
+  <div class="fleet-grid">
+
+    <!-- BMW M4 FEATURED -->
+    <div class="car r">
+      <img src="images/bmw-m4.jpg" alt="BMW M4 Competition" loading="eager">
+      <div class="car-ol"></div>
+      <div class="car-info">
+        <div class="car-badge">⭐ FEATURED</div>
+        <div class="car-name">BMW M4 COMPETITION</div>
+        <div class="car-spec">510 PS · 0–100 in 3,9s · Hinterradantrieb · Mindestens 1,5 Jahre Führerschein · Ab 20 Jahren</div>
+        <div class="car-prices">
+          <div class="cp"><div class="cp-l">Mo – Do</div><div class="cp-v">250€<span class="cp-s">/Tag</span></div></div>
+          <div class="cp"><div class="cp-l">Fr – So</div><div class="cp-v">280€<span class="cp-s">/Tag</span></div></div>
+          <div class="cp"><div class="cp-l">Wochenende</div><div class="cp-v">700€</div></div>
+          <div class="cp"><div class="cp-l">Woche</div><div class="cp-v">1.350€</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- C63 AMG -->
+    <div class="car r">
+      <img src="images/c63-amg.jpg" alt="Mercedes C63s AMG Coupé" loading="lazy">
+      <div class="car-ol"></div>
+      <div class="car-info">
+        <div class="car-name">MERCEDES C63s AMG COUPÉ</div>
+        <div class="car-spec">510 PS · V8 Biturbo · AMG Performance · Mindestens 1,5 Jahre Führerschein · Ab 20 Jahren</div>
+        <div class="car-prices">
+          <div class="cp"><div class="cp-l">Mo – Do</div><div class="cp-v">250€<span class="cp-s">/Tag</span></div></div>
+          <div class="cp"><div class="cp-l">Fr – So</div><div class="cp-v">280€<span class="cp-s">/Tag</span></div></div>
+          <div class="cp"><div class="cp-l">Wochenende</div><div class="cp-v">700€</div></div>
+          <div class="cp"><div class="cp-l">Woche</div><div class="cp-v">1.350€</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RS3 -->
+    <div class="car r">
+      <img src="images/audi-rs3.jpg" alt="Audi RS3 Limousine" loading="lazy">
+      <div class="car-ol"></div>
+      <div class="car-info">
+        <div class="car-name">AUDI RS3 LIMOUSINE</div>
+        <div class="car-spec">400 PS · RS Torque Splitter · Quattro · Mindestens 1 Jahr Führerschein · Ab 18 Jahren</div>
+        <div class="car-prices">
+          <div class="cp"><div class="cp-l">Mo – Do</div><div class="cp-v">180€<span class="cp-s">/Tag</span></div></div>
+          <div class="cp"><div class="cp-l">Fr – So</div><div class="cp-v">210€<span class="cp-s">/Tag</span></div></div>
+          <div class="cp"><div class="cp-l">Wochenende</div><div class="cp-v">500€</div></div>
+          <div class="cp"><div class="cp-l">Woche</div><div class="cp-v">1.100€</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- R8 -->
+    <div class="car r">
+      <img src="images/audi-r8.jpg" alt="Audi R8 V10" loading="lazy">
+      <div class="car-ol"></div>
+      <div class="car-info">
+        <div class="car-badge">🆕 NEUZUGANG</div>
+        <div class="car-name">AUDI R8 V10</div>
+        <div class="car-spec">Mittelmotor Supersportwagen · V10 Saugmotor · Quattro · Anfrage für Preise</div>
+        <div class="car-prices">
+          <div class="cp"><div class="cp-l">Preis auf</div><div class="cp-v" style="font-size:18px">Anfrage</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="sh r">
+    <div class="sh-eye">Was wir bieten</div>
+    <h2>UNSERE SERVICES</h2>
+    <p>Mehr als Autovermietung — ein vollständiges Premium-Erlebnis von Buchung bis Rückgabe.</p>
+  </div>
+  <div class="svc-grid">
+    <div class="svc r">
+      <div class="svc-num">01</div>
+      <div class="svc-icon">🏎️</div>
+      <h3>SPORTWAGEN VERMIETUNG</h3>
+      <p class="svc-desc">Miete Deinen Traumsportwagen für ein Wochenende, eine Woche oder spontan unter der Woche. Flexible Laufzeiten, transparente Preise, 24/7 Support.</p>
+      <ul class="svc-list">
+        <li>200 Freikilometer pro Tag inklusive</li>
+        <li>Flexible Abholung & Rückgabe in Bochum</li>
+        <li>Kundenservice Montag bis Sonntag</li>
+        <li>Vollkaskoversicherung verfügbar</li>
+        <li>Ab 18 Jahren (fahrzeugabhängig)</li>
+      </ul>
+    </div>
+    <div class="svc r d2">
+      <div class="svc-num">02</div>
+      <div class="svc-icon">✨</div>
+      <h3>FAHRZEUG AUFBEREITUNG</h3>
+      <p class="svc-desc">Professionelle Fahrzeugpflege auf höchstem Niveau. Von der Grundreinigung bis zur detaillierten Politur — wir machen Dein Fahrzeug wieder wie neu.</p>
+      <ul class="svc-list">
+        <li>Innen- und Außenreinigung professionell</li>
+        <li>Politur & Lackpflege</li>
+        <li>Lederpflege & Innenraum-Detailing</li>
+        <li>Felgen & Reifenpflege</li>
+        <li>Anfrage direkt per WhatsApp</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING CTA -->
+<section class="booking" id="preise">
+  <div class="booking-inner">
+    <div class="sh-eye r" style="justify-content:center;margin-bottom:20px">Bereit für das Erlebnis</div>
+    <h2 class="r">DEIN<br>TRAUMAUTO<br><span>WARTET.</span></h2>
+    <p class="r">Schreib uns direkt auf WhatsApp oder ruf an.<br>Wir antworten sofort — auch am Wochenende, auch nachts.</p>
+    <div class="booking-btns r">
+      <a href="https://wa.me/4917664872989" class="btn-wa" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Auf WhatsApp schreiben
+      </a>
+      <a href="tel:+4917664872989" class="btn-tel">📞 017664872989</a>
+    </div>
+    <div class="contact-row r" id="kontakt">
+      <div class="ci">
+        <span class="ci-icon">📍</span>
+        <div class="ci-lbl">Standort</div>
+        <div class="ci-val">Oberscheidstr. 8<br>Bochum</div>
+      </div>
+      <div class="ci">
+        <span class="ci-icon">🕐</span>
+        <div class="ci-lbl">Erreichbarkeit</div>
+        <div class="ci-val">Mo – So · 24/7</div>
+      </div>
+      <div class="ci">
+        <span class="ci-icon">✉️</span>
+        <div class="ci-lbl">E-Mail</div>
+        <div class="ci-val"><a href="mailto:Cinarmetec65@gmail.com">Cinarmetec65@gmail.com</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL -->
+<section class="social">
+  <div class="sh r">
+    <div class="sh-eye">Folge uns</div>
+    <h2>SOCIAL MEDIA</h2>
+    <p>16.300+ Follower auf TikTok & über 710.000 Likes. Schau Dir unsere Fahrzeuge live in Aktion an.</p>
+  </div>
+  <div class="social-row">
+    <a href="https://www.tiktok.com/@mcsportwagen" class="soc-card r" target="_blank" rel="noopener">
+      <div class="soc-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9a8.17 8.17 0 004.77 1.52V7.07a4.85 4.85 0 01-1-.38z"/></svg>
+      </div>
+      <div>
+        <div class="soc-name">TIKTOK</div>
+        <div class="soc-handle">@mcsportwagen</div>
+      </div>
+      <div class="soc-stat">
+        <div class="soc-count">16.3K</div>
+        <div class="soc-cl">Follower</div>
+      </div>
+    </a>
+    <a href="https://www.instagram.com/mcsportwagen/" class="soc-card r d2" target="_blank" rel="noopener">
+      <div class="soc-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg>
+      </div>
+      <div>
+        <div class="soc-name">INSTAGRAM</div>
+        <div class="soc-handle">@mcsportwagen</div>
+      </div>
+      <div class="soc-stat">
+        <div class="soc-count">237</div>
+        <div class="soc-cl">Follower</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- IMPRESSUM -->
+<section class="imp">
+  <div class="sh-eye r" style="margin-bottom:36px"><span>—</span> Impressum <span>—</span></div>
+  <div class="imp-grid">
+    <div class="imp-block r">
+      <h4>Angaben gemäß § 5 TMG</h4>
+      <p>Mete Halis Cinar<br>MCSportwagen<br>Oberscheidstr. 8<br>44797 Bochum</p>
+    </div>
+    <div class="imp-block r d1">
+      <h4>Kontakt</h4>
+      <p>Telefon: <a href="tel:+4917664872989">017664872989</a><br>E-Mail: <a href="mailto:Cinarmetec65@gmail.com">Cinarmetec65@gmail.com</a></p>
+    </div>
+    <div class="imp-block r d2">
+      <h4>Haftungshinweis</h4>
+      <p>Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft">
+    <div class="ft-logo">
+      <div class="ft-mc">MC</div>
+      <div>
+        <div class="ft-name">MCSPORTWAGEN<span>Sportwagen Vermietung Bochum</span></div>
+      </div>
+    </div>
+    <div class="ft-nav">
+      <div class="ft-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#flotte">Unsere Flotte</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#preise">Preise</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Fahrzeuge</h4>
+        <ul>
+          <li><a href="#flotte">BMW M4 Competition</a></li>
+          <li><a href="#flotte">Mercedes C63s AMG</a></li>
+          <li><a href="#flotte">Audi RS3 Limousine</a></li>
+          <li><a href="#flotte">Audi R8 V10</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Social & Kontakt</h4>
+        <ul>
+          <li><a href="https://www.tiktok.com/@mcsportwagen" target="_blank">TikTok</a></li>
+          <li><a href="https://www.instagram.com/mcsportwagen/" target="_blank">Instagram</a></li>
+          <li><a href="https://wa.me/4917664872989" target="_blank">WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span>© 2025 MCSportwagen · Mete Halis Cinar · Bochum</span>
+    <span><a href="#kontakt">Impressum</a> &nbsp;·&nbsp; <a href="https://wa.me/4917664872989" target="_blank">WhatsApp</a></span>
+  </div>
+</footer>
+
+<script>
+// NAV SCROLL
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('s',scrollY>60));
+
+// HERO BG
+const bg=document.getElementById('heroBg');
+const i=new Image();i.onload=()=>bg.style.backgroundImage="url('images/bmw-m4.jpg')";
+bg.style.backgroundImage="url('images/bmw-m4.jpg')";
+setTimeout(()=>bg.style.transform='scale(1)',100);
+
+// REVEAL
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')}),{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.r').forEach(el=>obs.observe(el));
+
+// COUNTERS
+const finals={'16.3K':'16.3K','710.6K':'710.6K','4':'4','24/7':'24/7'};
+const cObs=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  const el=e.target,to=el.dataset.to;
+  if(['24/7','16.3K','710.6K'].includes(to)){
+    let n=0,steps=40,interval=setInterval(()=>{
+      n++;
+      if(to==='24/7')el.textContent=n>=steps?'24/7':Math.floor((24/steps)*n)+'h';
+      else if(to==='16.3K')el.textContent=n>=steps?'16.3K':(((16.3/steps)*n).toFixed(1))+'K';
+      else el.textContent=n>=steps?'710.6K':(((710.6/steps)*n).toFixed(1))+'K';
+      if(n>=steps)clearInterval(interval);
+    },40);
+  } else {
+    let n=0,t=parseInt(to),steps=40,interval=setInterval(()=>{
+      n++;el.textContent=Math.min(Math.round((t/steps)*n),t);
+      if(n>=steps)clearInterval(interval);
+    },40);
+  }
+  cObs.unobserve(el);
+}),{threshold:.6});
+document.querySelectorAll('.stat-n[data-to]').forEach(el=>cObs.observe(el));
+
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',function(e){
+    const h=this.getAttribute('href');
+    if(h==='#')return;
+    e.preventDefault();
+    const t=document.querySelector(h);
+    if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+
+// CAR HOVER PARALLAX
+document.querySelectorAll('.car').forEach(card=>{
+  const img=card.querySelector('img');
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5;
+    const y=(e.clientY-r.top)/r.height-.5;
+    img.style.transform=`scale(1.08) translate(${x*12}px,${y*8}px)`;
+    img.style.transition='transform .1s ease';
+  });
+  card.addEventListener('mouseleave',()=>{
+    img.style.transform='scale(1)';
+    img.style.transition='transform .8s cubic-bezier(.25,.46,.45,.94)';
+  });
+});
+</script>
+</body>
+</html>

@@ -1100,11 +1100,14 @@ footer{padding:32px 16px 20px}
             <div class="sc-idx">04 — AUDI</div>
             <div class="sc-name">R8<br>V10</div>
             <div class="sc-spec">Mittelmotor Supersportwagen · V10 · Quattro</div>
-            <a href="https://wa.me/4917664872989" class="sc-book" target="_blank">Preis anfragen →</a>
+            <a href="https://wa.me/4917664872989?text=Hallo%2C%20ich%20m%C3%B6chte%20den%20Audi%20R8%20V10%20mieten." class="sc-book" target="_blank">Jetzt Buchen →</a>
           </div>
           <div class="sc-right">
-            <div class="sc-pricebig" style="font-size:clamp(40px,5.5vw,80px);margin-bottom:12px">AUF<br>ANFRAGE</div>
-            <div class="sc-pricesub">Kontakt per WhatsApp</div>
+            <div class="sc-pricebig">400€</div>
+            <div class="sc-pricesub">pro Tag · Mo – Do</div>
+            <div class="sc-allprices">
+              <div class="sc-ap"><span class="sc-apl">Fr – So</span><span class="sc-apv">450€/Tag</span></div>
+            </div>
           </div>
         </div>
       </div>
@@ -1191,9 +1194,10 @@ footer{padding:32px 16px 20px}
       <div class="mob-car-name">R8 V10</div>
       <div class="mob-car-spec">V10 Saugmotor · Quattro · Mittelmotor Supersportwagen</div>
       <div class="mob-car-prices">
-        <div class="mob-cp"><span class="mob-cpl">Preis</span><span class="mob-cpv" style="font-size:18px">Auf Anfrage</span></div>
+        <div class="mob-cp"><span class="mob-cpl">Mo–Do</span><span class="mob-cpv">400€<span class="mob-cps">/Tag</span></span></div>
+        <div class="mob-cp"><span class="mob-cpl">Fr–So</span><span class="mob-cpv">450€<span class="mob-cps">/Tag</span></span></div>
       </div>
-      <a href="https://wa.me/4917664872989?text=Hallo%2C%20ich%20m%C3%B6chte%20den%20Audi%20R8%20V10%20mieten.%20Bitte%20um%20Preisauskunft." class="mob-car-btn" target="_blank">
+      <a href="https://wa.me/4917664872989?text=Hallo%2C%20ich%20m%C3%B6chte%20den%20Audi%20R8%20V10%20mieten." class="mob-car-btn" target="_blank">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         R8 anfragen
       </a>
@@ -1738,7 +1742,7 @@ const prices={
   m4: {name:'BMW M4 Competition',wd:250,we_d:280,we:700,week:1350,km_d:200,km_we:600,km_week:1100},
   c63:{name:'Mercedes C63s AMG',wd:250,we_d:280,we:300,week:1350,km_d:200,km_we:600,km_week:1100},
   rs3:{name:'Audi RS3 Limousine',wd:180,we_d:210,we:500,week:1100,km_d:200,km_we:500,km_week:1000},
-  r8: {name:'Audi R8 V10',wd:null,we_d:null,we:null,week:null,km_d:null}
+  r8: {name:'Audi R8 V10',wd:400,we_d:450,we:null,week:null,km_d:200}
 };
 let calcCar='m4',calcType='weekday',calcDays=1;
 
@@ -1764,8 +1768,8 @@ function updateCalc(){
 
   if(calcType==='weekday'){total=p.wd*calcDays;km=p.km_d*calcDays;label=`${calcDays} Tag${calcDays>1?'e':''} · Mo–Do`;}
   else if(calcType==='weekend_day'){total=p.we_d*calcDays;km=p.km_d*calcDays;label=`${calcDays} Tag${calcDays>1?'e':''} · Fr–So`;}
-  else if(calcType==='full_we'){total=p.we;km=p.km_we;label='Komplett-Wochenende';}
-  else{total=p.week;km=p.km_week;label='Komplette Woche';}
+  else if(calcType==='full_we'){if(!p.we){priceEl.textContent='Anfragen';subEl.textContent='Kontakt per WhatsApp';kmEl.textContent='—';waEl.href='https://wa.me/4917664872989?text=Hallo%2C%20Preisanfrage%20Audi%20R8%20V10%20Wochenende.';return;}total=p.we;km=p.km_we;label='Komplett-Wochenende';}
+  else{if(!p.week){priceEl.textContent='Anfragen';subEl.textContent='Kontakt per WhatsApp';kmEl.textContent='—';waEl.href='https://wa.me/4917664872989?text=Hallo%2C%20Preisanfrage%20Audi%20R8%20V10%20Woche.';return;}total=p.week;km=p.km_week;label='Komplette Woche';}
 
   // animate price count-up
   const prev=parseInt(priceEl.textContent)||0;

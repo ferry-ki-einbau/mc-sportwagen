@@ -1026,7 +1026,7 @@ footer{padding:32px 16px 20px}
   <div class="sc-track" id="scTrack">
 
     <!-- 01 BMW M4 -->
-    <div class="sc-slide active tilt-card" data-i="0">
+    <div class="sc-slide active tilt-card" data-i="0" data-car="m4">
       <div class="tilt-shine"></div>
       <div class="sc-bg"><picture><source media="(max-width:900px)" srcset="images/bmw-m4-mobile-md.webp" type="image/webp"><img src="images/bmw-m4-md.webp" alt="BMW M4 Competition" loading="eager"></picture></div>
       <div class="sc-ol"></div><div class="sc-ol2"></div>
@@ -1034,19 +1034,19 @@ footer{padding:32px 16px 20px}
       <div class="sc-content">
         <div class="sc-top">
           <div class="sc-left">
-            <div class="sc-tag">⭐ Featured</div>
+            <div class="sc-tag" data-bind="tag">⭐ Featured</div>
             <div class="sc-idx">01 — BMW</div>
             <div class="sc-name">M4<br>COMPETITION</div>
-            <div class="sc-spec">510 PS · 0–100 in 3,9s · RWD · Ab 20 J.</div>
+            <div class="sc-spec" data-bind="spec">510 PS · 0–100 in 3,9s · RWD · Ab 20 J.</div>
             <a href="https://wa.me/4917664872989" class="sc-book" target="_blank">Jetzt Buchen →</a>
           </div>
           <div class="sc-right">
-            <div class="sc-pricebig">250€</div>
+            <div class="sc-pricebig" data-bind="wd">250€</div>
             <div class="sc-pricesub">pro Tag · Mo – Do</div>
             <div class="sc-allprices">
-              <div class="sc-ap"><span class="sc-apl">Fr – So</span><span class="sc-apv">300€/Tag</span></div>
-              <div class="sc-ap"><span class="sc-apl">Wochenende</span><span class="sc-apv">700€</span></div>
-              <div class="sc-ap"><span class="sc-apl">Woche</span><span class="sc-apv">1.350€</span></div>
+              <div class="sc-ap"><span class="sc-apl">Fr – So</span><span class="sc-apv" data-bind="we_d">300€/Tag</span></div>
+              <div class="sc-ap"><span class="sc-apl">Wochenende</span><span class="sc-apv" data-bind="we">700€</span></div>
+              <div class="sc-ap"><span class="sc-apl">Woche</span><span class="sc-apv" data-bind="week">1.350€</span></div>
             </div>
           </div>
         </div>
@@ -1054,7 +1054,7 @@ footer{padding:32px 16px 20px}
     </div>
 
     <!-- 02 C63 AMG -->
-    <div class="sc-slide tilt-card" data-i="1">
+    <div class="sc-slide tilt-card" data-i="1" data-car="c63">
       <div class="tilt-shine"></div>
       <div class="sc-bg"><picture><source media="(max-width:900px)" srcset="images/c63-amg-mobile-md.webp" type="image/webp"><img src="images/c63-amg-md.webp" alt="Mercedes C63s AMG" loading="lazy" decoding="async" width="1200" height="800"></picture></div>
       <div class="sc-ol"></div><div class="sc-ol2"></div>
@@ -1064,16 +1064,16 @@ footer{padding:32px 16px 20px}
           <div class="sc-left">
             <div class="sc-idx">02 — MERCEDES</div>
             <div class="sc-name">C63s<br>AMG COUPÉ</div>
-            <div class="sc-spec">510 PS · V8 Biturbo · AMG Performance · Ab 20 J.</div>
+            <div class="sc-spec" data-bind="spec">510 PS · V8 Biturbo · AMG Performance · Ab 20 J.</div>
             <a href="https://wa.me/4917664872989" class="sc-book" target="_blank">Jetzt Buchen →</a>
           </div>
           <div class="sc-right">
-            <div class="sc-pricebig">250€</div>
+            <div class="sc-pricebig" data-bind="wd">250€</div>
             <div class="sc-pricesub">pro Tag · Mo – Do</div>
             <div class="sc-allprices">
-              <div class="sc-ap"><span class="sc-apl">Fr – So</span><span class="sc-apv">300€/Tag</span></div>
-              <div class="sc-ap"><span class="sc-apl">Wochenende</span><span class="sc-apv">700€</span></div>
-              <div class="sc-ap"><span class="sc-apl">Woche</span><span class="sc-apv">1.350€</span></div>
+              <div class="sc-ap"><span class="sc-apl">Fr – So</span><span class="sc-apv" data-bind="we_d">300€/Tag</span></div>
+              <div class="sc-ap"><span class="sc-apl">Wochenende</span><span class="sc-apv" data-bind="we">700€</span></div>
+              <div class="sc-ap"><span class="sc-apl">Woche</span><span class="sc-apv" data-bind="week">1.350€</span></div>
             </div>
           </div>
         </div>
@@ -1081,7 +1081,7 @@ footer{padding:32px 16px 20px}
     </div>
 
     <!-- 03 RS3 -->
-    <div class="sc-slide tilt-card" data-i="2">
+    <div class="sc-slide tilt-card" data-i="2" data-car="rs3">
       <div class="tilt-shine"></div>
       <div class="sc-bg"><picture><source media="(max-width:900px)" srcset="images/audi-rs3-mobile-md.webp" type="image/webp"><img src="images/audi-rs3-md.webp" alt="Audi RS3 Limousine" loading="lazy" decoding="async" width="1200" height="800"></picture></div>
       <div class="sc-ol"></div><div class="sc-ol2"></div>
@@ -1091,16 +1091,16 @@ footer{padding:32px 16px 20px}
           <div class="sc-left">
             <div class="sc-idx">03 — AUDI</div>
             <div class="sc-name">RS3<br>LIMOUSINE</div>
-            <div class="sc-spec">400 PS · RS Torque Splitter · Quattro · Ab 18 J.</div>
+            <div class="sc-spec" data-bind="spec">400 PS · RS Torque Splitter · Quattro · Ab 18 J.</div>
             <a href="https://wa.me/4917664872989" class="sc-book" target="_blank">Jetzt Buchen →</a>
           </div>
           <div class="sc-right">
-            <div class="sc-pricebig">180€</div>
+            <div class="sc-pricebig" data-bind="wd">180€</div>
             <div class="sc-pricesub">pro Tag · Mo – Do</div>
             <div class="sc-allprices">
-              <div class="sc-ap"><span class="sc-apl">Fr – So</span><span class="sc-apv">210€/Tag</span></div>
-              <div class="sc-ap"><span class="sc-apl">Wochenende</span><span class="sc-apv">500€</span></div>
-              <div class="sc-ap"><span class="sc-apl">Woche</span><span class="sc-apv">1.100€</span></div>
+              <div class="sc-ap"><span class="sc-apl">Fr – So</span><span class="sc-apv" data-bind="we_d">210€/Tag</span></div>
+              <div class="sc-ap"><span class="sc-apl">Wochenende</span><span class="sc-apv" data-bind="we">500€</span></div>
+              <div class="sc-ap"><span class="sc-apl">Woche</span><span class="sc-apv" data-bind="week">1.100€</span></div>
             </div>
           </div>
         </div>
@@ -1108,7 +1108,7 @@ footer{padding:32px 16px 20px}
     </div>
 
     <!-- 04 R8 -->
-    <div class="sc-slide tilt-card" data-i="3">
+    <div class="sc-slide tilt-card" data-i="3" data-car="r8">
       <div class="tilt-shine"></div>
       <div class="sc-bg"><picture><source media="(max-width:900px)" srcset="images/audi-r8-mobile-md.webp" type="image/webp"><img src="images/audi-r8-md.webp" alt="Audi R8 V10" loading="eager" fetchpriority="high" decoding="async" width="1200" height="800"></picture></div>
       <div class="sc-ol"></div><div class="sc-ol2"></div>
@@ -1116,17 +1116,17 @@ footer{padding:32px 16px 20px}
       <div class="sc-content">
         <div class="sc-top">
           <div class="sc-left">
-            <div class="sc-tag">🆕 Neuzugang</div>
+            <div class="sc-tag" data-bind="tag">🆕 Neuzugang</div>
             <div class="sc-idx">04 — AUDI</div>
             <div class="sc-name">R8<br>V10</div>
-            <div class="sc-spec">Mittelmotor Supersportwagen · V10 · Quattro</div>
+            <div class="sc-spec" data-bind="spec">Mittelmotor Supersportwagen · V10 · Quattro</div>
             <a href="https://wa.me/4917664872989?text=Hallo%2C%20ich%20m%C3%B6chte%20den%20Audi%20R8%20V10%20mieten." class="sc-book" target="_blank">Jetzt Buchen →</a>
           </div>
           <div class="sc-right">
-            <div class="sc-pricebig">400€</div>
+            <div class="sc-pricebig" data-bind="wd">400€</div>
             <div class="sc-pricesub">pro Tag · Mo – Do</div>
             <div class="sc-allprices">
-              <div class="sc-ap"><span class="sc-apl">Fr – So</span><span class="sc-apv">450€/Tag</span></div>
+              <div class="sc-ap"><span class="sc-apl">Fr – So</span><span class="sc-apv" data-bind="we_d">450€/Tag</span></div>
             </div>
           </div>
         </div>
@@ -1145,18 +1145,18 @@ footer{padding:32px 16px 20px}
   </div>
 
   <!-- BMW M4 -->
-  <div class="mob-car">
+  <div class="mob-car" data-car="m4">
     <img class="mob-car-img" src="images/bmw-m4-mobile-md.webp" alt="BMW M4 Competition" loading="lazy">
     <div class="mob-car-body">
-      <div class="mob-car-tag">⭐ Featured</div>
+      <div class="mob-car-tag" data-bind="tag">⭐ Featured</div>
       <div class="mob-car-idx">01 — BMW</div>
       <div class="mob-car-name">M4 COMPETITION</div>
-      <div class="mob-car-spec">510 PS · 0–100 in 3,9s · Ab 20 J. · mind. 1,5 J. Führerschein</div>
+      <div class="mob-car-spec" data-bind="mobileSpec">510 PS · 0–100 in 3,9s · Ab 20 J. · mind. 1,5 J. Führerschein</div>
       <div class="mob-car-prices">
-        <div class="mob-cp"><span class="mob-cpl">Mo–Do</span><span class="mob-cpv">250€<span class="mob-cps">/Tag</span></span></div>
-        <div class="mob-cp"><span class="mob-cpl">Fr–So</span><span class="mob-cpv">300€<span class="mob-cps">/Tag</span></span></div>
-        <div class="mob-cp"><span class="mob-cpl">Wochenende</span><span class="mob-cpv">700€</span></div>
-        <div class="mob-cp"><span class="mob-cpl">Woche</span><span class="mob-cpv">1.350€</span></div>
+        <div class="mob-cp"><span class="mob-cpl">Mo–Do</span><span class="mob-cpv" data-bind="wd-tag">250€<span class="mob-cps">/Tag</span></span></div>
+        <div class="mob-cp"><span class="mob-cpl">Fr–So</span><span class="mob-cpv" data-bind="we_d-tag">300€<span class="mob-cps">/Tag</span></span></div>
+        <div class="mob-cp"><span class="mob-cpl">Wochenende</span><span class="mob-cpv" data-bind="we">700€</span></div>
+        <div class="mob-cp"><span class="mob-cpl">Woche</span><span class="mob-cpv" data-bind="week">1.350€</span></div>
       </div>
       <a href="https://wa.me/4917664872989?text=Hallo%2C%20ich%20m%C3%B6chte%20den%20BMW%20M4%20Competition%20mieten." class="mob-car-btn" target="_blank">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -1166,17 +1166,17 @@ footer{padding:32px 16px 20px}
   </div>
 
   <!-- C63 AMG -->
-  <div class="mob-car">
+  <div class="mob-car" data-car="c63">
     <img class="mob-car-img" src="images/c63-amg-mobile-md.webp" alt="Mercedes C63s AMG" loading="lazy" decoding="async" width="1200" height="800">
     <div class="mob-car-body">
       <div class="mob-car-idx">02 — MERCEDES</div>
       <div class="mob-car-name">C63s AMG COUPÉ</div>
-      <div class="mob-car-spec">510 PS · V8 Biturbo · Ab 20 J. · mind. 1,5 J. Führerschein</div>
+      <div class="mob-car-spec" data-bind="mobileSpec">510 PS · V8 Biturbo · Ab 20 J. · mind. 1,5 J. Führerschein</div>
       <div class="mob-car-prices">
-        <div class="mob-cp"><span class="mob-cpl">Mo–Do</span><span class="mob-cpv">250€<span class="mob-cps">/Tag</span></span></div>
-        <div class="mob-cp"><span class="mob-cpl">Fr–So</span><span class="mob-cpv">300€<span class="mob-cps">/Tag</span></span></div>
-        <div class="mob-cp"><span class="mob-cpl">Wochenende</span><span class="mob-cpv">700€</span></div>
-        <div class="mob-cp"><span class="mob-cpl">Woche</span><span class="mob-cpv">1.350€</span></div>
+        <div class="mob-cp"><span class="mob-cpl">Mo–Do</span><span class="mob-cpv" data-bind="wd-tag">250€<span class="mob-cps">/Tag</span></span></div>
+        <div class="mob-cp"><span class="mob-cpl">Fr–So</span><span class="mob-cpv" data-bind="we_d-tag">300€<span class="mob-cps">/Tag</span></span></div>
+        <div class="mob-cp"><span class="mob-cpl">Wochenende</span><span class="mob-cpv" data-bind="we">700€</span></div>
+        <div class="mob-cp"><span class="mob-cpl">Woche</span><span class="mob-cpv" data-bind="week">1.350€</span></div>
       </div>
       <a href="https://wa.me/4917664872989?text=Hallo%2C%20ich%20m%C3%B6chte%20den%20Mercedes%20C63s%20AMG%20mieten." class="mob-car-btn" target="_blank">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -1186,17 +1186,17 @@ footer{padding:32px 16px 20px}
   </div>
 
   <!-- RS3 -->
-  <div class="mob-car">
+  <div class="mob-car" data-car="rs3">
     <img class="mob-car-img" src="images/audi-rs3-mobile-md.webp" alt="Audi RS3 Limousine" loading="lazy" decoding="async" width="1200" height="800">
     <div class="mob-car-body">
       <div class="mob-car-idx">03 — AUDI</div>
       <div class="mob-car-name">RS3 LIMOUSINE</div>
-      <div class="mob-car-spec">400 PS · Quattro · Ab 18 J. · mind. 1 J. Führerschein</div>
+      <div class="mob-car-spec" data-bind="mobileSpec">400 PS · Quattro · Ab 18 J. · mind. 1 J. Führerschein</div>
       <div class="mob-car-prices">
-        <div class="mob-cp"><span class="mob-cpl">Mo–Do</span><span class="mob-cpv">180€<span class="mob-cps">/Tag</span></span></div>
-        <div class="mob-cp"><span class="mob-cpl">Fr–So</span><span class="mob-cpv">210€<span class="mob-cps">/Tag</span></span></div>
-        <div class="mob-cp"><span class="mob-cpl">Wochenende</span><span class="mob-cpv">500€</span></div>
-        <div class="mob-cp"><span class="mob-cpl">Woche</span><span class="mob-cpv">1.100€</span></div>
+        <div class="mob-cp"><span class="mob-cpl">Mo–Do</span><span class="mob-cpv" data-bind="wd-tag">180€<span class="mob-cps">/Tag</span></span></div>
+        <div class="mob-cp"><span class="mob-cpl">Fr–So</span><span class="mob-cpv" data-bind="we_d-tag">210€<span class="mob-cps">/Tag</span></span></div>
+        <div class="mob-cp"><span class="mob-cpl">Wochenende</span><span class="mob-cpv" data-bind="we">500€</span></div>
+        <div class="mob-cp"><span class="mob-cpl">Woche</span><span class="mob-cpv" data-bind="week">1.100€</span></div>
       </div>
       <a href="https://wa.me/4917664872989?text=Hallo%2C%20ich%20m%C3%B6chte%20den%20Audi%20RS3%20Limousine%20mieten." class="mob-car-btn" target="_blank">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -1206,16 +1206,16 @@ footer{padding:32px 16px 20px}
   </div>
 
   <!-- R8 -->
-  <div class="mob-car">
+  <div class="mob-car" data-car="r8">
     <img class="mob-car-img" src="images/audi-r8-mobile-md.webp" alt="Audi R8 V10" loading="eager" fetchpriority="high" decoding="async" width="1200" height="800">
     <div class="mob-car-body">
-      <div class="mob-car-tag">🆕 Neuzugang</div>
+      <div class="mob-car-tag" data-bind="tag">🆕 Neuzugang</div>
       <div class="mob-car-idx">04 — AUDI</div>
       <div class="mob-car-name">R8 V10</div>
-      <div class="mob-car-spec">V10 Saugmotor · Quattro · Mittelmotor Supersportwagen</div>
+      <div class="mob-car-spec" data-bind="mobileSpec">V10 Saugmotor · Quattro · Mittelmotor Supersportwagen</div>
       <div class="mob-car-prices">
-        <div class="mob-cp"><span class="mob-cpl">Mo–Do</span><span class="mob-cpv">400€<span class="mob-cps">/Tag</span></span></div>
-        <div class="mob-cp"><span class="mob-cpl">Fr–So</span><span class="mob-cpv">450€<span class="mob-cps">/Tag</span></span></div>
+        <div class="mob-cp"><span class="mob-cpl">Mo–Do</span><span class="mob-cpv" data-bind="wd-tag">400€<span class="mob-cps">/Tag</span></span></div>
+        <div class="mob-cp"><span class="mob-cpl">Fr–So</span><span class="mob-cpv" data-bind="we_d-tag">450€<span class="mob-cps">/Tag</span></span></div>
       </div>
       <a href="https://wa.me/4917664872989?text=Hallo%2C%20ich%20m%C3%B6chte%20den%20Audi%20R8%20V10%20mieten." class="mob-car-btn" target="_blank">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -1807,6 +1807,7 @@ document.querySelectorAll('.fqi').forEach(item=>{
 });
 
 // ─── PRICE CALCULATOR ───
+// Default prices (overridden by /api/config if available)
 const prices={
   m4: {name:'BMW M4 Competition',wd:250,we_d:300,we:700,week:1350,km_d:200,km_we:600,km_week:1100},
   c63:{name:'Mercedes C63s AMG',wd:250,we_d:300,we:700,week:1350,km_d:200,km_we:600,km_week:1100},
@@ -1964,6 +1965,64 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
     if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
   });
 });
+
+// ─── DYNAMIC CONFIG LOADER ───
+(async function loadDynamicConfig(){
+  try{
+    const res=await fetch('/api/config');
+    if(!res.ok)return;
+    const cfg=await res.json();
+    if(!cfg||!cfg.cars)return;
+
+    // Update price calculator data
+    Object.keys(cfg.cars).forEach(function(id){
+      var c=cfg.cars[id];
+      if(!c||!prices[id])return;
+      prices[id].name=c.name;
+      prices[id].wd=c.prices.wd;
+      prices[id].we_d=c.prices.we_d;
+      prices[id].we=c.prices.we;
+      prices[id].week=c.prices.week;
+      prices[id].km_d=c.km.day;
+      prices[id].km_we=c.km.weekend;
+      prices[id].km_week=c.km.week;
+    });
+    updateCalc();
+
+    // Update desktop showcase + mobile cards
+    document.querySelectorAll('[data-car]').forEach(function(card){
+      var id=card.dataset.car;
+      var c=cfg.cars[id];
+      if(!c)return;
+
+      // Hide/show
+      if(!c.visible){card.style.display='none';return;}
+
+      card.querySelectorAll('[data-bind]').forEach(function(el){
+        var bind=el.dataset.bind;
+        if(bind==='tag'){el.textContent=c.tag||'';if(!c.tag)el.style.display='none';}
+        else if(bind==='spec')el.textContent=c.spec;
+        else if(bind==='mobileSpec')el.textContent=c.mobileSpec;
+        else if(bind==='wd')el.textContent=c.prices.wd?c.prices.wd+'€':'Anfrage';
+        else if(bind==='we_d')el.textContent=c.prices.we_d?c.prices.we_d+'€/Tag':'Anfrage';
+        else if(bind==='we')el.textContent=c.prices.we?c.prices.we.toLocaleString('de-DE')+'€':'Auf Anfrage';
+        else if(bind==='week')el.textContent=c.prices.week?c.prices.week.toLocaleString('de-DE')+'€':'Auf Anfrage';
+        else if(bind==='wd-tag'){el.textContent='';el.appendChild(document.createTextNode(c.prices.wd?c.prices.wd+'€':'Anfrage'));if(c.prices.wd){var s=document.createElement('span');s.className='mob-cps';s.textContent='/Tag';el.appendChild(s);}}
+        else if(bind==='we_d-tag'){el.textContent='';el.appendChild(document.createTextNode(c.prices.we_d?c.prices.we_d+'€':'Anfrage'));if(c.prices.we_d){var s=document.createElement('span');s.className='mob-cps';s.textContent='/Tag';el.appendChild(s);}}
+      });
+    });
+
+    // Banner
+    if(cfg.banner&&cfg.banner.active&&cfg.banner.text){
+      var b=document.createElement('div');
+      b.style.cssText='position:fixed;top:0;left:0;right:0;z-index:9999;background:var(--red);color:#fff;text-align:center;padding:10px 16px;font-size:12px;font-weight:700;letter-spacing:1px;cursor:pointer';
+      b.textContent=cfg.banner.text;
+      b.addEventListener('click',function(){b.remove();document.body.style.paddingTop='0';});
+      document.body.prepend(b);
+      document.body.style.paddingTop='38px';
+    }
+  }catch(e){/* silent fail — hardcoded values stay */}
+})();
 </script>
 </body>
 </html>

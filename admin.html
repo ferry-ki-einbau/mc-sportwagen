@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin · MCSportwagen</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#060606;--s1:#0a0a0a;--s2:#0f0f0f;--red:#CC1111;--border:rgba(255,255,255,.06);--m:#888;--w:#fff}
+body{background:var(--bg);color:#e8e8e8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;min-height:100dvh;line-height:1.5}
+
+/* LOGIN */
+.login{display:flex;align-items:center;justify-content:center;min-height:100dvh;padding:24px}
+.login-box{background:var(--s1);border:1px solid var(--border);padding:40px 32px;width:100%;max-width:380px;text-align:center}
+.login-logo{font-size:24px;font-weight:800;letter-spacing:4px;margin-bottom:4px}
+.login-sub{font-size:11px;color:var(--m);letter-spacing:3px;text-transform:uppercase;margin-bottom:32px}
+.login-input{width:100%;background:var(--s2);border:1px solid var(--border);color:var(--w);padding:14px 16px;font-size:15px;outline:none;transition:border-color .3s;-webkit-appearance:none;border-radius:0}
+.login-input:focus{border-color:var(--red)}
+.login-input::placeholder{color:#444}
+.login-btn{width:100%;background:var(--red);color:var(--w);border:none;padding:14px;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;margin-top:12px;transition:opacity .3s}
+.login-btn:active{opacity:.7}
+.login-err{color:var(--red);font-size:12px;margin-top:12px;min-height:18px}
+
+/* ADMIN PANEL */
+.admin{display:none}
+.admin.show{display:block}
+.login.hide{display:none}
+
+.top-bar{background:var(--s1);border-bottom:1px solid var(--border);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.top-title{font-size:14px;font-weight:700;letter-spacing:2px}
+.top-title span{color:var(--red)}
+.top-actions{display:flex;gap:8px}
+.btn{padding:10px 18px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s}
+.btn-save{background:var(--red);color:var(--w)}
+.btn-save:active{opacity:.7}
+.btn-save:disabled{background:#333;color:#666;cursor:not-allowed}
+.btn-out{background:transparent;color:var(--m);border:1px solid var(--border)}
+.btn-back{background:transparent;color:var(--m);border:1px solid var(--border);text-decoration:none;display:inline-flex;align-items:center;gap:6px;padding:10px 18px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+
+.container{max-width:700px;margin:0 auto;padding:20px 16px 100px}
+
+/* TABS */
+.tabs{display:flex;gap:2px;margin-bottom:20px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab{padding:12px 18px;background:var(--s2);border:1px solid var(--border);font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--m);cursor:pointer;white-space:nowrap;transition:all .2s;flex-shrink:0}
+.tab.active{background:rgba(204,17,17,.08);border-color:var(--red);color:var(--w)}
+
+/* CAR CARD */
+.car-card{background:var(--s1);border:1px solid var(--border);margin-bottom:16px;overflow:hidden}
+.car-card.hidden-car{opacity:.5}
+.car-head{padding:16px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);cursor:pointer}
+.car-name{font-size:15px;font-weight:700;letter-spacing:1px}
+.car-toggle{display:flex;align-items:center;gap:12px}
+.car-chevron{color:var(--m);transition:transform .2s;font-size:18px}
+.car-card.open .car-chevron{transform:rotate(180deg)}
+.car-body{display:none;padding:20px}
+.car-card.open .car-body{display:block}
+
+/* TOGGLE SWITCH */
+.switch{position:relative;width:44px;height:24px;flex-shrink:0}
+.switch input{opacity:0;width:0;height:0}
+.switch-slider{position:absolute;inset:0;background:#333;border-radius:24px;cursor:pointer;transition:.2s}
+.switch-slider::before{content:'';position:absolute;height:18px;width:18px;left:3px;bottom:3px;background:var(--w);border-radius:50%;transition:.2s}
+.switch input:checked+.switch-slider{background:var(--red)}
+.switch input:checked+.switch-slider::before{transform:translateX(20px)}
+
+/* FORM FIELDS */
+.field{margin-bottom:16px}
+.field-label{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--m);margin-bottom:6px}
+.field-input{width:100%;background:var(--s2);border:1px solid var(--border);color:var(--w);padding:12px 14px;font-size:14px;outline:none;transition:border-color .3s;-webkit-appearance:none;border-radius:0}
+.field-input:focus{border-color:var(--red)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.field-hint{font-size:10px;color:#555;margin-top:4px}
+
+/* PRICE GROUP */
+.price-group{background:var(--s2);border:1px solid var(--border);padding:16px;margin-bottom:12px}
+.price-group-title{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:12px}
+
+/* BANNER */
+.banner-section{background:var(--s1);border:1px solid var(--border);padding:20px;margin-bottom:20px}
+.banner-title{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:12px}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);background:#1a1a1a;border:1px solid var(--border);padding:14px 24px;font-size:13px;font-weight:600;z-index:999;transition:transform .3s cubic-bezier(.16,1,.3,1);white-space:nowrap}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.toast.success{border-color:rgba(34,197,94,.4);color:#22c55e}
+.toast.error{border-color:rgba(204,17,17,.4);color:var(--red)}
+
+/* CONTACT */
+.contact-section{background:var(--s1);border:1px solid var(--border);padding:20px;margin-bottom:20px}
+.contact-title{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;color:var(--red)}
+
+@media(max-width:500px){
+  .field-row{grid-template-columns:1fr 1fr}
+  .tabs{gap:0}
+  .tab{padding:10px 14px;font-size:10px}
+  .container{padding:16px 12px 100px}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div class="login" id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">MCSPORTWAGEN</div>
+    <div class="login-sub">Admin Panel</div>
+    <input type="password" class="login-input" id="loginPw" placeholder="Passwort eingeben" autocomplete="current-password">
+    <button class="login-btn" id="loginBtn">Anmelden</button>
+    <div class="login-err" id="loginErr"></div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div class="admin" id="adminPanel">
+  <div class="top-bar">
+    <div class="top-title"><span>MC</span>SPORTWAGEN · Admin</div>
+    <div class="top-actions">
+      <a href="index.html" class="btn btn-back">Site</a>
+      <button class="btn btn-save" id="saveBtn" disabled>Speichern</button>
+      <button class="btn btn-out" id="logoutBtn">Logout</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="tabs" id="tabBar"></div>
+    <div id="tab-cars" class="tab-content"></div>
+    <div id="tab-contact" class="tab-content" style="display:none"></div>
+    <div id="tab-banner" class="tab-content" style="display:none"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+let config = null;
+let token = null;
+let dirty = false;
+
+// ─── SAFE DOM HELPERS ───
+function el(tag, attrs, children) {
+  const e = document.createElement(tag);
+  if (attrs) Object.keys(attrs).forEach(k => {
+    if (k === 'className') e.className = attrs[k];
+    else if (k === 'textContent') e.textContent = attrs[k];
+    else if (k.startsWith('on')) e.addEventListener(k.slice(2).toLowerCase(), attrs[k]);
+    else e.setAttribute(k, attrs[k]);
+  });
+  if (children) children.forEach(c => { if (c) e.appendChild(typeof c === 'string' ? document.createTextNode(c) : c); });
+  return e;
+}
+
+function fieldBlock(label, inputEl, hint) {
+  const d = el('div', { className: 'field' }, [
+    el('div', { className: 'field-label', textContent: label }),
+    inputEl
+  ]);
+  if (hint) d.appendChild(el('div', { className: 'field-hint', textContent: hint }));
+  return d;
+}
+
+function inputEl(type, value, attrs) {
+  const inp = el('input', Object.assign({ type, className: 'field-input', value: value != null ? String(value) : '' }, attrs));
+  return inp;
+}
+
+function switchEl(checked, onChange) {
+  const label = el('label', { className: 'switch' });
+  const inp = el('input', { type: 'checkbox' });
+  inp.checked = checked;
+  inp.addEventListener('change', onChange);
+  const span = el('span', { className: 'switch-slider' });
+  label.appendChild(inp);
+  label.appendChild(span);
+  return label;
+}
+
+// ─── LOGIN ───
+document.getElementById('loginPw').addEventListener('keydown', function(e) { if (e.key === 'Enter') doLogin(); });
+document.getElementById('loginBtn').addEventListener('click', doLogin);
+document.getElementById('logoutBtn').addEventListener('click', logout);
+document.getElementById('saveBtn').addEventListener('click', saveConfig);
+
+async function doLogin() {
+  const pw = document.getElementById('loginPw').value.trim();
+  if (!pw) return;
+  document.getElementById('loginBtn').textContent = '...';
+  try {
+    const res = await fetch('/api/admin/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: pw })
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      document.getElementById('loginErr').textContent = data.error || 'Fehler';
+      document.getElementById('loginBtn').textContent = 'Anmelden';
+      return;
+    }
+    token = data.token;
+    sessionStorage.setItem('mc_token', token);
+    showAdmin();
+  } catch (e) {
+    document.getElementById('loginErr').textContent = 'Verbindungsfehler';
+    document.getElementById('loginBtn').textContent = 'Anmelden';
+  }
+}
+
+function logout() {
+  sessionStorage.removeItem('mc_token');
+  token = null;
+  document.getElementById('loginScreen').classList.remove('hide');
+  document.getElementById('adminPanel').classList.remove('show');
+  document.getElementById('loginPw').value = '';
+  document.getElementById('loginErr').textContent = '';
+}
+
+// ─── ADMIN ───
+async function showAdmin() {
+  document.getElementById('loginScreen').classList.add('hide');
+  document.getElementById('adminPanel').classList.add('show');
+  buildTabs();
+  await loadConfig();
+}
+
+function buildTabs() {
+  const bar = document.getElementById('tabBar');
+  bar.textContent = '';
+  ['cars', 'contact', 'banner'].forEach((t, i) => {
+    const labels = { cars: 'Fahrzeuge', contact: 'Kontakt', banner: 'Banner' };
+    const tab = el('div', {
+      className: 'tab' + (i === 0 ? ' active' : ''),
+      textContent: labels[t],
+      onClick: function() { switchTab(t); }
+    });
+    tab.dataset.tab = t;
+    bar.appendChild(tab);
+  });
+}
+
+function switchTab(tab) {
+  document.querySelectorAll('.tab').forEach(function(t) { t.classList.toggle('active', t.dataset.tab === tab); });
+  document.querySelectorAll('.tab-content').forEach(function(c) { c.style.display = 'none'; });
+  document.getElementById('tab-' + tab).style.display = 'block';
+}
+
+async function loadConfig() {
+  try {
+    const res = await fetch('/api/config');
+    config = await res.json();
+    renderCars();
+    renderContact();
+    renderBanner();
+  } catch (e) {
+    showToast('Laden fehlgeschlagen', 'error');
+  }
+}
+
+function renderCars() {
+  const wrap = document.getElementById('tab-cars');
+  wrap.textContent = '';
+  var carOrder = ['m4', 'c63', 'rs3', 'r8'];
+  carOrder.forEach(function(id) {
+    var c = config.cars[id];
+    if (!c) return;
+
+    var card = el('div', { className: 'car-card' + (c.visible ? '' : ' hidden-car') });
+
+    // HEAD
+    var head = el('div', { className: 'car-head' });
+    head.addEventListener('click', function() { card.classList.toggle('open'); });
+    head.appendChild(el('div', { className: 'car-name', textContent: c.name }));
+
+    var toggle = el('div', { className: 'car-toggle' });
+    var sw = switchEl(c.visible, function(e) {
+      e.stopPropagation();
+      config.cars[id].visible = e.target.checked;
+      markDirty();
+      renderCars();
+    });
+    sw.addEventListener('click', function(e) { e.stopPropagation(); });
+    toggle.appendChild(sw);
+    toggle.appendChild(el('span', { className: 'car-chevron', textContent: '▾' }));
+    head.appendChild(toggle);
+    card.appendChild(head);
+
+    // BODY
+    var body = el('div', { className: 'car-body' });
+
+    // Tag
+    var tagInp = inputEl('text', c.tag || '', { placeholder: 'z.B. ⭐ Featured' });
+    tagInp.addEventListener('input', function() { config.cars[id].tag = this.value; markDirty(); });
+    body.appendChild(fieldBlock('Tag (optional)', tagInp));
+
+    // Specs
+    var specInp = inputEl('text', c.spec);
+    specInp.addEventListener('input', function() { config.cars[id].spec = this.value; markDirty(); });
+    body.appendChild(fieldBlock('Specs Desktop', specInp));
+
+    var mSpecInp = inputEl('text', c.mobileSpec);
+    mSpecInp.addEventListener('input', function() { config.cars[id].mobileSpec = this.value; markDirty(); });
+    body.appendChild(fieldBlock('Specs Mobile', mSpecInp));
+
+    // Prices
+    var pg = el('div', { className: 'price-group' }, [
+      el('div', { className: 'price-group-title', textContent: 'Preise' })
+    ]);
+
+    var row1 = el('div', { className: 'field-row' });
+    var wdInp = inputEl('number', c.prices.wd || '');
+    wdInp.addEventListener('input', function() { config.cars[id].prices.wd = this.value ? Number(this.value) : null; markDirty(); });
+    row1.appendChild(fieldBlock('Mo–Do (€/Tag)', wdInp));
+    var wedInp = inputEl('number', c.prices.we_d || '');
+    wedInp.addEventListener('input', function() { config.cars[id].prices.we_d = this.value ? Number(this.value) : null; markDirty(); });
+    row1.appendChild(fieldBlock('Fr–So (€/Tag)', wedInp));
+    pg.appendChild(row1);
+
+    var row2 = el('div', { className: 'field-row' });
+    var weInp = inputEl('number', c.prices.we || '', { placeholder: 'leer = Auf Anfrage' });
+    weInp.addEventListener('input', function() { config.cars[id].prices.we = this.value ? Number(this.value) : null; markDirty(); });
+    row2.appendChild(fieldBlock('Wochenende (€)', weInp));
+    var weekInp = inputEl('number', c.prices.week || '', { placeholder: 'leer = Auf Anfrage' });
+    weekInp.addEventListener('input', function() { config.cars[id].prices.week = this.value ? Number(this.value) : null; markDirty(); });
+    row2.appendChild(fieldBlock('Woche (€)', weekInp));
+    pg.appendChild(row2);
+    body.appendChild(pg);
+
+    // KM
+    var kmg = el('div', { className: 'price-group' }, [
+      el('div', { className: 'price-group-title', textContent: 'Freikilometer' })
+    ]);
+    var kmRow = el('div', { className: 'field-row' });
+    var kmDayInp = inputEl('number', c.km.day || '');
+    kmDayInp.addEventListener('input', function() { config.cars[id].km.day = this.value ? Number(this.value) : null; markDirty(); });
+    kmRow.appendChild(fieldBlock('Pro Tag (km)', kmDayInp));
+    var kmWeInp = inputEl('number', c.km.weekend || '', { placeholder: 'leer = —' });
+    kmWeInp.addEventListener('input', function() { config.cars[id].km.weekend = this.value ? Number(this.value) : null; markDirty(); });
+    kmRow.appendChild(fieldBlock('Wochenende (km)', kmWeInp));
+    kmg.appendChild(kmRow);
+    var kmWeekInp = inputEl('number', c.km.week || '', { placeholder: 'leer = —' });
+    kmWeekInp.addEventListener('input', function() { config.cars[id].km.week = this.value ? Number(this.value) : null; markDirty(); });
+    kmg.appendChild(fieldBlock('Woche (km)', kmWeekInp));
+    body.appendChild(kmg);
+
+    card.appendChild(body);
+    wrap.appendChild(card);
+  });
+}
+
+function renderContact() {
+  var wrap = document.getElementById('tab-contact');
+  wrap.textContent = '';
+  var sec = el('div', { className: 'contact-section' }, [
+    el('div', { className: 'contact-title', textContent: 'Kontaktdaten' })
+  ]);
+  var phoneInp = inputEl('tel', config.contact?.phone || '');
+  phoneInp.id = 'cfg-phone';
+  phoneInp.addEventListener('input', markDirty);
+  sec.appendChild(fieldBlock('Telefon (ohne +49)', phoneInp));
+  var waInp = inputEl('tel', config.contact?.whatsapp || '');
+  waInp.id = 'cfg-whatsapp';
+  waInp.addEventListener('input', markDirty);
+  sec.appendChild(fieldBlock('WhatsApp (mit Landesvorwahl)', waInp, 'Format: 4917664872989 (ohne + oder Leerzeichen)'));
+  wrap.appendChild(sec);
+}
+
+function renderBanner() {
+  var wrap = document.getElementById('tab-banner');
+  wrap.textContent = '';
+  var sec = el('div', { className: 'banner-section' });
+  var title = el('div', { className: 'banner-title', textContent: 'Aktionsbanner ' });
+  var sw = switchEl(config.banner?.active || false, function(e) { markDirty(); });
+  sw.querySelector('input').id = 'cfg-banner-active';
+  title.appendChild(sw);
+  sec.appendChild(title);
+  var txtInp = inputEl('text', config.banner?.text || '', { placeholder: 'z.B. 🔥 RS3 Aktion: 149€/Tag diese Woche!' });
+  txtInp.id = 'cfg-banner-text';
+  txtInp.addEventListener('input', markDirty);
+  sec.appendChild(fieldBlock('Banner-Text', txtInp, 'Wird oben auf der Seite angezeigt wenn aktiv'));
+  wrap.appendChild(sec);
+}
+
+function markDirty() {
+  dirty = true;
+  document.getElementById('saveBtn').disabled = false;
+}
+
+// ─── SAVE ───
+async function saveConfig() {
+  config.contact = {
+    phone: document.getElementById('cfg-phone').value.trim(),
+    whatsapp: document.getElementById('cfg-whatsapp').value.trim()
+  };
+  config.banner = {
+    active: document.getElementById('cfg-banner-active').checked,
+    text: document.getElementById('cfg-banner-text').value.trim()
+  };
+
+  var btn = document.getElementById('saveBtn');
+  btn.textContent = 'Speichern...';
+  btn.disabled = true;
+
+  try {
+    var res = await fetch('/api/config', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      },
+      body: JSON.stringify(config)
+    });
+    if (!res.ok) {
+      var data = await res.json();
+      throw new Error(data.error || 'Fehler');
+    }
+    dirty = false;
+    btn.textContent = 'Speichern';
+    showToast('Gespeichert', 'success');
+  } catch (e) {
+    btn.textContent = 'Speichern';
+    btn.disabled = false;
+    showToast(e.message, 'error');
+  }
+}
+
+// ─── TOAST ───
+function showToast(msg, type) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast ' + type + ' show';
+  setTimeout(function() { t.classList.remove('show'); }, 2500);
+}
+
+// ─── AUTO-LOGIN ───
+(function() {
+  var saved = sessionStorage.getItem('mc_token');
+  if (saved) {
+    token = saved;
+    showAdmin();
+  }
+})();
+</script>
+</body>
+</html>

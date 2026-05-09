@@ -401,7 +401,8 @@ nav.s{background:rgba(5,5,5,.96);backdrop-filter:blur(20px);padding:14px 64px;bo
 .tt-feed-inner{display:flex;flex-direction:row;flex-wrap:nowrap;gap:20px;animation:ttScroll 45s linear infinite;width:max-content;align-items:flex-start}
 .tt-feed-inner:hover{animation-play-state:paused}
 /* force each embed to stay fixed width in flex row */
-.tt-feed-inner .tiktok-embed{flex-shrink:0!important;width:325px!important;min-width:325px!important;max-width:325px!important;display:inline-block!important}
+.tt-feed-inner .tiktok-embed{flex-shrink:0!important;width:325px!important;min-width:325px!important;max-width:325px!important;display:inline-block!important;height:580px!important;overflow:hidden!important}
+.tt-feed-inner .tiktok-embed iframe{height:580px!important;max-height:580px!important}
 .tt-feed-inner blockquote{flex-shrink:0!important}
 @keyframes ttScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 /* Carousel wrapper */
@@ -1499,7 +1500,7 @@ footer{padding:32px 16px 20px}
     </div>
   </div>
   <div class="ftb">
-    <span>© 2025 MCSportwagen · Mete Halis Cinar · Bochum</span>
+    <span>© 2025 MCSportwagen · Mete Halis Cinar · Bochum · Website von <a href="https://ferryemirer.de" target="_blank" rel="noopener" style="color:var(--m);text-decoration:underline;text-underline-offset:2px">Ferry Emirer – Webdesign Stuttgart</a></span>
     <span>
       <a href="impressum.html">Impressum</a> &nbsp;·&nbsp;
       <a href="datenschutz.html">Datenschutz</a> &nbsp;·&nbsp;
@@ -1530,13 +1531,18 @@ if(ttSection){
 // ─── STICKY BAR: show only after hero ───
 const mobBar=document.getElementById('mobBar');
 if(mobBar){
+  let pastHero=false,inFooter=false;
+  const updateBar=()=>mobBar.classList.toggle('show',pastHero&&!inFooter);
   const heroEl=document.querySelector('.hero');
+  const footerEl=document.querySelector('footer');
   const heroObs=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      mobBar.classList.toggle('show',!e.isIntersecting);
-    });
+    entries.forEach(e=>{pastHero=!e.isIntersecting;updateBar()});
   },{threshold:0.05});
+  const footerObs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{inFooter=e.isIntersecting;updateBar()});
+  },{threshold:0});
   if(heroEl)heroObs.observe(heroEl);
+  if(footerEl)footerObs.observe(footerEl);
 }
 
 // ─── HERO PARALLAX (CSS animation handles bg cycling) ───

@@ -131,8 +131,42 @@
   --w:#ffffff;--m:#777777;--border:rgba(255,255,255,.06);
 }
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--w);font-family:'Inter',sans-serif;overflow-x:hidden}
+body{background:var(--bg);color:var(--w);font-family:'Inter',sans-serif;overflow-x:hidden;cursor:none}
 ::-webkit-scrollbar{width:2px}::-webkit-scrollbar-thumb{background:var(--red)}
+
+/* ─── CUSTOM CURSOR GLOW ─── */
+.cursor-glow{position:fixed;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(204,17,17,.12) 0%,rgba(204,17,17,.04) 35%,transparent 70%);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:opacity .3s;opacity:0;mix-blend-mode:screen}
+.cursor-glow.active{opacity:1}
+.cursor-dot{position:fixed;width:6px;height:6px;border-radius:50%;background:var(--red);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .15s ease;box-shadow:0 0 12px rgba(204,17,17,.6)}
+.cursor-dot.hover{transform:translate(-50%,-50%) scale(3);background:transparent;border:1.5px solid var(--red)}
+
+/* ─── 3D TILT ─── */
+.tilt-card{transform-style:preserve-3d;transition:transform .1s ease;will-change:transform}
+.tilt-card .tilt-shine{position:absolute;inset:0;pointer-events:none;z-index:8;opacity:0;transition:opacity .4s;background:radial-gradient(circle at var(--mx) var(--my),rgba(255,255,255,.08) 0%,transparent 60%)}
+.tilt-card:hover .tilt-shine{opacity:1}
+
+/* ─── PROCESS / SO EINFACH ─── */
+.process{padding:110px 64px;background:var(--bg);border-top:1px solid var(--border);position:relative;overflow:hidden}
+.process::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(204,17,17,.04) 0%,transparent 60%);pointer-events:none}
+.proc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:64px;max-width:1100px;margin-left:auto;margin-right:auto;position:relative;z-index:2}
+.proc-step{padding:48px 36px;background:var(--s2);border:1px solid var(--border);position:relative;overflow:hidden;transition:border-color .4s,transform .3s}
+.proc-step:hover{border-color:rgba(204,17,17,.3);transform:translateY(-4px)}
+.proc-step::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .6s cubic-bezier(.16,1,.3,1)}
+.proc-step:hover::after{transform:scaleX(1)}
+.proc-num{font-family:'Bebas Neue';font-size:140px;color:rgba(255,255,255,.025);position:absolute;top:-10px;right:16px;line-height:1;pointer-events:none}
+.proc-ico{width:48px;height:48px;background:rgba(204,17,17,.08);border:1px solid rgba(204,17,17,.2);display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:all .3s}
+.proc-step:hover .proc-ico{background:rgba(204,17,17,.15);border-color:rgba(204,17,17,.5)}
+.proc-h{font-family:'Bebas Neue';font-size:24px;letter-spacing:2px;margin-bottom:10px}
+.proc-d{font-size:13px;color:var(--m);line-height:1.85;font-weight:300}
+/* connector line between steps */
+.proc-grid::before{content:'';position:absolute;top:50%;left:calc(33.33% + 1px);right:calc(33.33% + 1px);height:1px;background:repeating-linear-gradient(90deg,rgba(204,17,17,.3) 0,rgba(204,17,17,.3) 8px,transparent 8px,transparent 16px);z-index:5;pointer-events:none}
+
+/* ─── MAGNETIC BUTTONS ─── */
+.magnetic{transition:transform .2s cubic-bezier(.16,1,.3,1)}
+
+/* ─── HERO TEXT SCRAMBLE ─── */
+.scramble-char{display:inline-block;opacity:0;animation:scrambleIn .05s ease forwards}
+@keyframes scrambleIn{to{opacity:1}}
 
 /* ─── GRAIN ─── */
 body::after{content:'';position:fixed;inset:0;opacity:.4;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999}
@@ -837,6 +871,19 @@ section[style*="100px 64px"]{padding:52px 16px!important}
 
 /* === IMPRESSUM === */
 
+/* === PROCESS === */
+.process{padding:52px 16px}
+.proc-grid{grid-template-columns:1fr;gap:3px}
+.proc-step{padding:28px 20px}
+.proc-num{font-size:90px;top:-5px;right:10px}
+.proc-ico{width:40px;height:40px;margin-bottom:18px}
+.proc-h{font-size:22px}
+.proc-d{font-size:12px}
+.proc-grid::before{display:none}
+/* cursor glow: hide on mobile (no mouse) */
+.cursor-glow,.cursor-dot{display:none!important}
+body{cursor:auto!important}
+
 /* === FOOTER === */
 footer{padding:32px 16px 20px}
 .ft{flex-direction:column;gap:28px}
@@ -852,6 +899,10 @@ footer{padding:32px 16px 20px}
 </style>
 </head>
 <body>
+
+<!-- CURSOR GLOW (desktop only) -->
+<div class="cursor-glow" id="cursorGlow"></div>
+<div class="cursor-dot" id="cursorDot"></div>
 
 <!-- COOKIE BANNER -->
 <div id="cb">
@@ -900,7 +951,7 @@ footer{padding:32px 16px 20px}
     <li><a href="#tiktok">TikTok</a></li>
     <li><a href="#bewertung">Bewertung</a></li>
   </ul>
-  <a href="https://wa.me/4917664872989" class="ncta" target="_blank">Jetzt Buchen</a>
+  <a href="https://wa.me/4917664872989" class="ncta magnetic" target="_blank">Jetzt Buchen</a>
 </nav>
 
 <!-- ═══════════════ HERO ═══════════════ -->
@@ -922,11 +973,11 @@ footer{padding:32px 16px 20px}
     </h1>
     <p class="hsub">BMW M4 · C63s AMG · RS3 · R8 — bereit für Dich.<br>Keine Kompromisse. 24/7 Service. Ab 180€/Tag.</p>
     <div class="hbtns">
-      <a href="https://wa.me/4917664872989" class="br" target="_blank">
+      <a href="https://wa.me/4917664872989" class="br magnetic" target="_blank">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         <span>Jetzt Buchen</span>
       </a>
-      <a href="#flotte" class="bo">Flotte entdecken ↓</a>
+      <a href="#flotte" class="bo magnetic">Flotte entdecken ↓</a>
     </div>
   </div>
   <div class="hmeta">
@@ -987,7 +1038,8 @@ footer{padding:32px 16px 20px}
   <div class="sc-track" id="scTrack">
 
     <!-- 01 BMW M4 -->
-    <div class="sc-slide active" data-i="0">
+    <div class="sc-slide active tilt-card" data-i="0">
+      <div class="tilt-shine"></div>
       <div class="sc-bg"><picture><source media="(max-width:900px)" srcset="images/bmw-m4-mobile-opt.jpg"><img src="images/bmw-m4-opt.jpg" alt="BMW M4 Competition" loading="eager"></picture></div>
       <div class="sc-ol"></div><div class="sc-ol2"></div>
       <div class="sc-ghost">01</div>
@@ -1014,7 +1066,8 @@ footer{padding:32px 16px 20px}
     </div>
 
     <!-- 02 C63 AMG -->
-    <div class="sc-slide" data-i="1">
+    <div class="sc-slide tilt-card" data-i="1">
+      <div class="tilt-shine"></div>
       <div class="sc-bg"><picture><source media="(max-width:900px)" srcset="images/c63-amg-mobile-opt.jpg"><img src="images/c63-amg-opt.jpg" alt="Mercedes C63s AMG" loading="lazy" decoding="async" width="1200" height="800"></picture></div>
       <div class="sc-ol"></div><div class="sc-ol2"></div>
       <div class="sc-ghost">02</div>
@@ -1040,7 +1093,8 @@ footer{padding:32px 16px 20px}
     </div>
 
     <!-- 03 RS3 -->
-    <div class="sc-slide" data-i="2">
+    <div class="sc-slide tilt-card" data-i="2">
+      <div class="tilt-shine"></div>
       <div class="sc-bg"><picture><source media="(max-width:900px)" srcset="images/audi-rs3-mobile-opt.jpg"><img src="images/audi-rs3-opt.jpg" alt="Audi RS3 Limousine" loading="lazy" decoding="async" width="1200" height="800"></picture></div>
       <div class="sc-ol"></div><div class="sc-ol2"></div>
       <div class="sc-ghost">03</div>
@@ -1066,7 +1120,8 @@ footer{padding:32px 16px 20px}
     </div>
 
     <!-- 04 R8 -->
-    <div class="sc-slide" data-i="3">
+    <div class="sc-slide tilt-card" data-i="3">
+      <div class="tilt-shine"></div>
       <div class="sc-bg"><picture><source media="(max-width:900px)" srcset="images/audi-r8-mobile-opt.jpg"><img src="images/audi-r8-opt.jpg" alt="Audi R8 V10" loading="eager" fetchpriority="high" decoding="async" width="1200" height="800"></picture></div>
       <div class="sc-ol"></div><div class="sc-ol2"></div>
       <div class="sc-ghost">04</div>
@@ -1213,6 +1268,35 @@ footer{padding:32px 16px 20px}
         <li>Felgen & Reifenpflege</li>
         <li>Anfrage direkt per WhatsApp</li>
       </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS — SO EINFACH GEHT'S -->
+<section class="process">
+  <div class="sh r">
+    <div class="sh-eye">In 3 Schritten</div>
+    <h2>SO EINFACH<br><span style="color:var(--red)">GEHT'S.</span></h2>
+    <p>Kein Papierkram. Kein Warten. In unter 5 Minuten gebucht.</p>
+  </div>
+  <div class="proc-grid">
+    <div class="proc-step r">
+      <div class="proc-num">01</div>
+      <div class="proc-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+      <div class="proc-h">WHATSAPP SCHREIBEN</div>
+      <p class="proc-d">Schreib uns dein Wunschfahrzeug, Datum und Dauer. Wir antworten sofort — auch nachts und am Wochenende.</p>
+    </div>
+    <div class="proc-step r d1">
+      <div class="proc-num">02</div>
+      <div class="proc-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+      <div class="proc-h">TERMIN VEREINBAREN</div>
+      <p class="proc-d">Wir klären Kaution, Führerschein und Übergabe. Alles per WhatsApp — kein Vertragschaos, kein Kleingedrucktes.</p>
+    </div>
+    <div class="proc-step r d2">
+      <div class="proc-num">03</div>
+      <div class="proc-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.5" stroke-linecap="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <div class="proc-h">LOSFAHREN</div>
+      <p class="proc-d">Schlüssel in die Hand, Motor an, Grinsen im Gesicht. 200 km pro Tag inklusive. Dein Sportwagen wartet.</p>
     </div>
   </div>
 </section>
@@ -1799,6 +1883,102 @@ document.querySelectorAll('.calc-day').forEach(el=>{
   });
 });
 updateCalc();
+
+// ─── CURSOR GLOW (desktop only) ───
+if(window.innerWidth>900){
+  const glow=document.getElementById('cursorGlow');
+  const dot=document.getElementById('cursorDot');
+  let mx=0,my=0,gx=0,gy=0;
+  document.addEventListener('mousemove',e=>{
+    mx=e.clientX;my=e.clientY;
+    dot.style.left=mx+'px';dot.style.top=my+'px';
+    glow.classList.add('active');
+  });
+  // smooth follow for glow
+  (function glowLoop(){
+    gx+=(mx-gx)*.12;gy+=(my-gy)*.12;
+    glow.style.left=gx+'px';glow.style.top=gy+'px';
+    requestAnimationFrame(glowLoop);
+  })();
+  // hover state on interactive elements
+  document.querySelectorAll('a,button,.calc-car,.calc-type,.calc-day,.fqq,.soc,.sc-slide').forEach(el=>{
+    el.addEventListener('mouseenter',()=>dot.classList.add('hover'));
+    el.addEventListener('mouseleave',()=>dot.classList.remove('hover'));
+  });
+  document.addEventListener('mouseleave',()=>glow.classList.remove('active'));
+}
+
+// ─── 3D TILT (desktop only) ───
+if(window.innerWidth>900){
+  document.querySelectorAll('.tilt-card').forEach(card=>{
+    const shine=card.querySelector('.tilt-shine');
+    card.addEventListener('mousemove',e=>{
+      const r=card.getBoundingClientRect();
+      const x=(e.clientX-r.left)/r.width;
+      const y=(e.clientY-r.top)/r.height;
+      const tiltX=(y-.5)*8;// max 4deg
+      const tiltY=(x-.5)*-8;
+      card.style.transform=`perspective(800px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.01)`;
+      if(shine){shine.style.setProperty('--mx',(x*100)+'%');shine.style.setProperty('--my',(y*100)+'%');}
+    });
+    card.addEventListener('mouseleave',()=>{
+      card.style.transform='perspective(800px) rotateX(0) rotateY(0) scale(1)';
+    });
+  });
+}
+
+// ─── MAGNETIC BUTTONS (desktop only) ───
+if(window.innerWidth>900){
+  document.querySelectorAll('.magnetic').forEach(btn=>{
+    btn.addEventListener('mousemove',e=>{
+      const r=btn.getBoundingClientRect();
+      const x=e.clientX-r.left-r.width/2;
+      const y=e.clientY-r.top-r.height/2;
+      btn.style.transform=`translate(${x*.25}px,${y*.25}px)`;
+    });
+    btn.addEventListener('mouseleave',()=>{
+      btn.style.transform='translate(0,0)';
+    });
+  });
+}
+
+// ─── HERO TEXT SCRAMBLE ───
+(function(){
+  const chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&';
+  document.querySelectorAll('.hh .ln span').forEach((span,i)=>{
+    const original=span.textContent;
+    const delay=150+i*150;// stagger per line
+    setTimeout(()=>{
+      let iterations=0;
+      const scramble=setInterval(()=>{
+        span.textContent=original.split('').map((c,j)=>{
+          if(j<iterations)return original[j];
+          return chars[Math.floor(Math.random()*chars.length)];
+        }).join('');
+        iterations+=1/2;
+        if(iterations>=original.length){
+          span.textContent=original;
+          clearInterval(scramble);
+        }
+      },35);
+    },delay+400);// wait for slide-up animation first
+  });
+})();
+
+// ─── PARALLAX SECTIONS ───
+(function(){
+  const parallaxEls=document.querySelectorAll('.sh h2, .bk-h, .tth, .proc-num');
+  window.addEventListener('scroll',()=>{
+    const sy=scrollY;
+    parallaxEls.forEach(el=>{
+      const r=el.getBoundingClientRect();
+      if(r.top<window.innerHeight&&r.bottom>0){
+        const offset=(r.top-window.innerHeight/2)*.04;
+        el.style.transform=`translateY(${offset}px)`;
+      }
+    });
+  },{passive:true});
+})();
 
 // ─── SMOOTH SCROLL ───
 document.querySelectorAll('a[href^="#"]').forEach(a=>{

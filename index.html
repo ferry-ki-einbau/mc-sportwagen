@@ -27,10 +27,10 @@
 <meta property="og:url" content="https://mcsportwagen.de/">
 <meta property="og:title" content="MCSportwagen – Premium Sportwagen Vermietung Bochum">
 <meta property="og:description" content="BMW M4, C63s AMG, RS3 & R8 mieten. Ab 180€/Tag, 200 km inkl., 24/7 Service. Bochum.">
-<meta property="og:image" content="https://mcsportwagen.de/images/og-image-opt.jpg">
+<meta property="og:image" content="https://mcsportwagen.de/images/og-image.webp">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta name="twitter:image" content="https://mcsportwagen.de/images/og-image-opt.jpg">
+<meta name="twitter:image" content="https://mcsportwagen.de/images/og-image.webp">
 <meta property="og:locale" content="de_DE">
 <meta property="og:site_name" content="MCSportwagen">
 
@@ -40,9 +40,8 @@
 <meta name="twitter:description" content="BMW M4, C63s AMG, RS3 & R8. Ab 180€/Tag, 200 km inkl., 24/7.">
 
 <!-- Preload LCP images (desktop + mobile) -->
-<link rel="preload" as="image" href="images/audi-r8-opt.jpg" fetchpriority="high" media="(min-width:901px)">
-<link rel="preload" as="image" href="images/audi-r8-mobile-opt.jpg" fetchpriority="high" media="(max-width:900px)">
-<link rel="preload" as="image" href="images/bmw-m4-opt.jpg" fetchpriority="low">
+<link rel="preload" as="image" href="images/bmw-m4-md.webp" type="image/webp" fetchpriority="high" media="(min-width:901px)">
+<link rel="preload" as="image" href="images/bmw-m4-mobile-md.webp" type="image/webp" fetchpriority="high" media="(max-width:900px)">
 <!-- Preconnect -->
 <link rel="dns-prefetch" href="https://www.tiktok.com">
 <style>
@@ -184,10 +183,10 @@ nav.s{background:rgba(5,5,5,.96);backdrop-filter:blur(20px);padding:14px 64px;bo
 .hero{position:relative;height:100vh;min-height:720px;display:flex;align-items:center;overflow:hidden}
 #hbg{position:absolute;inset:0;overflow:hidden}
 .hbl{position:absolute;inset:0;background-size:cover;background-position:center 40%;opacity:0}
-.hbl:nth-child(1){background-image:url('images/bmw-m4-opt.jpg');animation:hbc 28s 0s infinite}
-.hbl:nth-child(2){background-image:url('images/c63-amg-opt.jpg');animation:hbc 28s 7s infinite}
-.hbl:nth-child(3){background-image:url('images/audi-rs3-opt.jpg');animation:hbc 28s 14s infinite}
-.hbl:nth-child(4){background-image:url('images/audi-r8-opt.jpg');animation:hbc 28s 21s infinite}
+.hbl:nth-child(1){background-image:url('images/bmw-m4-md.webp');animation:hbc 28s 0s infinite}
+.hbl:nth-child(2){background-image:url('images/c63-amg-md.webp');animation:hbc 28s 7s infinite}
+.hbl:nth-child(3){background-image:url('images/audi-rs3-md.webp');animation:hbc 28s 14s infinite}
+.hbl:nth-child(4){background-image:url('images/audi-r8-md.webp');animation:hbc 28s 21s infinite}
 @keyframes hbc{
   0%{opacity:0;transform:scale(1.04) translate(0,0)}
   7%{opacity:1}
@@ -524,7 +523,7 @@ footer{background:var(--s1);border-top:1px solid var(--border);padding:60px 64px
 .booking{position:relative;overflow:hidden}
 .booking::before{content:'';position:absolute;right:-5%;top:50%;transform:translateY(-50%);
   width:55%;height:80%;
-  background:url('images/bmw-m4-opt.jpg') center/cover no-repeat;
+  background:url('images/bmw-m4-md.webp') center/cover no-repeat;
   opacity:.04;filter:saturate(0);pointer-events:none;z-index:0}
 .bk-left,.bk-right{position:relative;z-index:1}
 
@@ -690,10 +689,10 @@ body{padding-bottom:calc(76px + env(safe-area-inset-bottom))}
 
 /* === HERO PORTRAIT IMAGES + FASTER ROTATION === */
 .hbl{background-position:center center}
-.hbl:nth-child(1){background-image:url('images/bmw-m4-mobile-opt.jpg');animation-duration:16s;animation-delay:0s}
-.hbl:nth-child(2){background-image:url('images/c63-amg-mobile-opt.jpg');animation-duration:16s;animation-delay:4s}
-.hbl:nth-child(3){background-image:url('images/audi-rs3-mobile-opt.jpg');animation-duration:16s;animation-delay:8s}
-.hbl:nth-child(4){background-image:url('images/audi-r8-mobile-opt.jpg');animation-duration:16s;animation-delay:12s}
+.hbl:nth-child(1){background-image:url('images/bmw-m4-mobile-md.webp');animation-duration:16s;animation-delay:0s}
+.hbl:nth-child(2){background-image:url('images/c63-amg-mobile-md.webp');animation-duration:16s;animation-delay:4s}
+.hbl:nth-child(3){background-image:url('images/audi-rs3-mobile-md.webp');animation-duration:16s;animation-delay:8s}
+.hbl:nth-child(4){background-image:url('images/audi-r8-mobile-md.webp');animation-duration:16s;animation-delay:12s}
 /* hero overlay — protect bottom where text lives, show car above */
 .hol{background:linear-gradient(to top,rgba(5,5,5,.97) 0%,rgba(5,5,5,.75) 35%,rgba(5,5,5,.15) 60%,rgba(5,5,5,.0) 100%)}
 .hol2{height:260px}
@@ -1028,7 +1027,7 @@ footer{padding:32px 16px 20px}
     <!-- 01 BMW M4 -->
     <div class="sc-slide active tilt-card" data-i="0">
       <div class="tilt-shine"></div>
-      <div class="sc-bg"><picture><source media="(max-width:900px)" srcset="images/bmw-m4-mobile-opt.jpg"><img src="images/bmw-m4-opt.jpg" alt="BMW M4 Competition" loading="eager"></picture></div>
+      <div class="sc-bg"><picture><source media="(max-width:900px)" srcset="images/bmw-m4-mobile-md.webp" type="image/webp"><img src="images/bmw-m4-md.webp" alt="BMW M4 Competition" loading="eager"></picture></div>
       <div class="sc-ol"></div><div class="sc-ol2"></div>
       <div class="sc-ghost">01</div>
       <div class="sc-content">
@@ -1056,7 +1055,7 @@ footer{padding:32px 16px 20px}
     <!-- 02 C63 AMG -->
     <div class="sc-slide tilt-card" data-i="1">
       <div class="tilt-shine"></div>
-      <div class="sc-bg"><picture><source media="(max-width:900px)" srcset="images/c63-amg-mobile-opt.jpg"><img src="images/c63-amg-opt.jpg" alt="Mercedes C63s AMG" loading="lazy" decoding="async" width="1200" height="800"></picture></div>
+      <div class="sc-bg"><picture><source media="(max-width:900px)" srcset="images/c63-amg-mobile-md.webp" type="image/webp"><img src="images/c63-amg-md.webp" alt="Mercedes C63s AMG" loading="lazy" decoding="async" width="1200" height="800"></picture></div>
       <div class="sc-ol"></div><div class="sc-ol2"></div>
       <div class="sc-ghost">02</div>
       <div class="sc-content">
@@ -1083,7 +1082,7 @@ footer{padding:32px 16px 20px}
     <!-- 03 RS3 -->
     <div class="sc-slide tilt-card" data-i="2">
       <div class="tilt-shine"></div>
-      <div class="sc-bg"><picture><source media="(max-width:900px)" srcset="images/audi-rs3-mobile-opt.jpg"><img src="images/audi-rs3-opt.jpg" alt="Audi RS3 Limousine" loading="lazy" decoding="async" width="1200" height="800"></picture></div>
+      <div class="sc-bg"><picture><source media="(max-width:900px)" srcset="images/audi-rs3-mobile-md.webp" type="image/webp"><img src="images/audi-rs3-md.webp" alt="Audi RS3 Limousine" loading="lazy" decoding="async" width="1200" height="800"></picture></div>
       <div class="sc-ol"></div><div class="sc-ol2"></div>
       <div class="sc-ghost">03</div>
       <div class="sc-content">
@@ -1110,7 +1109,7 @@ footer{padding:32px 16px 20px}
     <!-- 04 R8 -->
     <div class="sc-slide tilt-card" data-i="3">
       <div class="tilt-shine"></div>
-      <div class="sc-bg"><picture><source media="(max-width:900px)" srcset="images/audi-r8-mobile-opt.jpg"><img src="images/audi-r8-opt.jpg" alt="Audi R8 V10" loading="eager" fetchpriority="high" decoding="async" width="1200" height="800"></picture></div>
+      <div class="sc-bg"><picture><source media="(max-width:900px)" srcset="images/audi-r8-mobile-md.webp" type="image/webp"><img src="images/audi-r8-md.webp" alt="Audi R8 V10" loading="eager" fetchpriority="high" decoding="async" width="1200" height="800"></picture></div>
       <div class="sc-ol"></div><div class="sc-ol2"></div>
       <div class="sc-ghost">04</div>
       <div class="sc-content">
@@ -1146,7 +1145,7 @@ footer{padding:32px 16px 20px}
 
   <!-- BMW M4 -->
   <div class="mob-car">
-    <img class="mob-car-img" src="images/bmw-m4-mobile-opt.jpg" alt="BMW M4 Competition" loading="lazy">
+    <img class="mob-car-img" src="images/bmw-m4-mobile-md.webp" alt="BMW M4 Competition" loading="lazy">
     <div class="mob-car-body">
       <div class="mob-car-tag">⭐ Featured</div>
       <div class="mob-car-idx">01 — BMW</div>
@@ -1167,7 +1166,7 @@ footer{padding:32px 16px 20px}
 
   <!-- C63 AMG -->
   <div class="mob-car">
-    <img class="mob-car-img" src="images/c63-amg-mobile-opt.jpg" alt="Mercedes C63s AMG" loading="lazy" decoding="async" width="1200" height="800">
+    <img class="mob-car-img" src="images/c63-amg-mobile-md.webp" alt="Mercedes C63s AMG" loading="lazy" decoding="async" width="1200" height="800">
     <div class="mob-car-body">
       <div class="mob-car-idx">02 — MERCEDES</div>
       <div class="mob-car-name">C63s AMG COUPÉ</div>
@@ -1187,7 +1186,7 @@ footer{padding:32px 16px 20px}
 
   <!-- RS3 -->
   <div class="mob-car">
-    <img class="mob-car-img" src="images/audi-rs3-mobile-opt.jpg" alt="Audi RS3 Limousine" loading="lazy" decoding="async" width="1200" height="800">
+    <img class="mob-car-img" src="images/audi-rs3-mobile-md.webp" alt="Audi RS3 Limousine" loading="lazy" decoding="async" width="1200" height="800">
     <div class="mob-car-body">
       <div class="mob-car-idx">03 — AUDI</div>
       <div class="mob-car-name">RS3 LIMOUSINE</div>
@@ -1207,7 +1206,7 @@ footer{padding:32px 16px 20px}
 
   <!-- R8 -->
   <div class="mob-car">
-    <img class="mob-car-img" src="images/audi-r8-mobile-opt.jpg" alt="Audi R8 V10" loading="eager" fetchpriority="high" decoding="async" width="1200" height="800">
+    <img class="mob-car-img" src="images/audi-r8-mobile-md.webp" alt="Audi R8 V10" loading="eager" fetchpriority="high" decoding="async" width="1200" height="800">
     <div class="mob-car-body">
       <div class="mob-car-tag">🆕 Neuzugang</div>
       <div class="mob-car-idx">04 — AUDI</div>

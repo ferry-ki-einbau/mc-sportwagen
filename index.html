@@ -131,14 +131,9 @@
   --w:#ffffff;--m:#777777;--border:rgba(255,255,255,.06);
 }
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--w);font-family:'Inter',sans-serif;overflow-x:hidden;cursor:none}
+body{background:var(--bg);color:var(--w);font-family:'Inter',sans-serif;overflow-x:hidden}
 ::-webkit-scrollbar{width:2px}::-webkit-scrollbar-thumb{background:var(--red)}
 
-/* ─── CUSTOM CURSOR GLOW ─── */
-.cursor-glow{position:fixed;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(204,17,17,.12) 0%,rgba(204,17,17,.04) 35%,transparent 70%);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:opacity .3s;opacity:0;mix-blend-mode:screen}
-.cursor-glow.active{opacity:1}
-.cursor-dot{position:fixed;width:6px;height:6px;border-radius:50%;background:var(--red);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .15s ease;box-shadow:0 0 12px rgba(204,17,17,.6)}
-.cursor-dot.hover{transform:translate(-50%,-50%) scale(3);background:transparent;border:1.5px solid var(--red)}
 
 /* ─── 3D TILT ─── */
 .tilt-card{transform-style:preserve-3d;transition:transform .1s ease;will-change:transform}
@@ -880,9 +875,6 @@ section[style*="100px 64px"]{padding:52px 16px!important}
 .proc-h{font-size:22px}
 .proc-d{font-size:12px}
 .proc-grid::before{display:none}
-/* cursor glow: hide on mobile (no mouse) */
-.cursor-glow,.cursor-dot{display:none!important}
-body{cursor:auto!important}
 
 /* === FOOTER === */
 footer{padding:32px 16px 20px}
@@ -899,10 +891,6 @@ footer{padding:32px 16px 20px}
 </style>
 </head>
 <body>
-
-<!-- CURSOR GLOW (desktop only) -->
-<div class="cursor-glow" id="cursorGlow"></div>
-<div class="cursor-dot" id="cursorDot"></div>
 
 <!-- COOKIE BANNER -->
 <div id="cb">
@@ -1883,30 +1871,6 @@ document.querySelectorAll('.calc-day').forEach(el=>{
   });
 });
 updateCalc();
-
-// ─── CURSOR GLOW (desktop only) ───
-if(window.innerWidth>900){
-  const glow=document.getElementById('cursorGlow');
-  const dot=document.getElementById('cursorDot');
-  let mx=0,my=0,gx=0,gy=0;
-  document.addEventListener('mousemove',e=>{
-    mx=e.clientX;my=e.clientY;
-    dot.style.left=mx+'px';dot.style.top=my+'px';
-    glow.classList.add('active');
-  });
-  // smooth follow for glow
-  (function glowLoop(){
-    gx+=(mx-gx)*.12;gy+=(my-gy)*.12;
-    glow.style.left=gx+'px';glow.style.top=gy+'px';
-    requestAnimationFrame(glowLoop);
-  })();
-  // hover state on interactive elements
-  document.querySelectorAll('a,button,.calc-car,.calc-type,.calc-day,.fqq,.soc,.sc-slide').forEach(el=>{
-    el.addEventListener('mouseenter',()=>dot.classList.add('hover'));
-    el.addEventListener('mouseleave',()=>dot.classList.remove('hover'));
-  });
-  document.addEventListener('mouseleave',()=>glow.classList.remove('active'));
-}
 
 // ─── 3D TILT (desktop only) ───
 if(window.innerWidth>900){

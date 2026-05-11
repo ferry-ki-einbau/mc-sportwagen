@@ -401,15 +401,49 @@ function renderBanner() {
   wrap.textContent = '';
   var sec = el('div', { className: 'banner-section' });
   var title = el('div', { className: 'banner-title', textContent: 'Aktionsbanner ' });
-  var sw = switchEl(config.banner?.active || false, function(e) { markDirty(); });
+  var bannerStatus = el('span', { className: 'banner-status', textContent: config.banner?.active ? '● LIVE' : '○ AUS' });
+  bannerStatus.style.cssText = 'font-size:11px;letter-spacing:1px;margin-left:8px;color:' + (config.banner?.active ? '#22c55e' : '#666');
+  var sw = switchEl(config.banner?.active || false, function(e) {
+    config.banner.active = e.target.checked;
+    config.banner.text = document.getElementById('cfg-banner-text').value.trim();
+    bannerStatus.textContent = e.target.checked ? '● LIVE' : '○ AUS';
+    bannerStatus.style.color = e.target.checked ? '#22c55e' : '#666';
+    // Sofort speichern
+    quickSaveBanner();
+  });
   sw.querySelector('input').id = 'cfg-banner-active';
   title.appendChild(sw);
+  title.appendChild(bannerStatus);
   sec.appendChild(title);
   var txtInp = inputEl('text', config.banner?.text || '', { placeholder: 'z.B. 🔥 RS3 Aktion: 149€/Tag diese Woche!' });
   txtInp.id = 'cfg-banner-text';
   txtInp.addEventListener('input', markDirty);
   sec.appendChild(fieldBlock('Banner-Text', txtInp, 'Wird oben auf der Seite angezeigt wenn aktiv'));
+  var hint = el('div', { textContent: '⚡ Banner-Toggle speichert sofort. Text-Änderungen über den Speichern-Button.' });
+  hint.style.cssText = 'font-size:11px;color:#555;margin-top:12px';
+  sec.appendChild(hint);
   wrap.appendChild(sec);
+}
+
+async function quickSaveBanner() {
+  config.contact = {
+    phone: document.getElementById('cfg-phone')?.value.trim() || config.contact?.phone || '',
+    whatsapp: document.getElementById('cfg-whatsapp')?.value.trim() || config.contact?.whatsapp || ''
+  };
+  config.banner = {
+    active: document.getElementById('cfg-banner-active').checked,
+    text: document.getElementById('cfg-banner-text').value.trim()
+  };
+  try {
+    var res = await fetch('/api/config', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+      body: JSON.stringify(config)
+    });
+    if (res.ok) {
+      showToast(config.banner.active ? 'Banner aktiviert ⚡' : 'Banner deaktiviert', 'success');
+    } else { showToast('Fehler beim Speichern', 'error'); }
+  } catch (e) { showToast('Verbindungsfehler', 'error'); }
 }
 
 function markDirty() {

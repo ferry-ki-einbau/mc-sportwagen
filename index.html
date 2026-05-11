@@ -1806,6 +1806,9 @@ document.querySelectorAll('.fqi').forEach(item=>{
   });
 });
 
+// ─── CONTACT (overridden by /api/config) ───
+let waNum='4917664872989',phoneNum='017664872989';
+
 // ─── PRICE CALCULATOR ───
 // Default prices (overridden by /api/config if available)
 const prices={
@@ -1828,7 +1831,7 @@ function updateCalc(){
     priceEl.textContent='Auf Anfrage';
     subEl.textContent='Kontakt per WhatsApp';
     kmEl.textContent='—';
-    waEl.href=`https://wa.me/4917664872989?text=${encodeURIComponent('Hallo, ich möchte den Audi R8 V10 mieten. Bitte um Preisauskunft.')}`;
+    waEl.href=`https://wa.me/${waNum}?text=${encodeURIComponent('Hallo, ich möchte den Audi R8 V10 mieten. Bitte um Preisauskunft.')}`;
     return;
   }
 
@@ -1838,8 +1841,8 @@ function updateCalc(){
 
   if(calcType==='weekday'){total=p.wd*calcDays;km=p.km_d*calcDays;label=`${calcDays} Tag${calcDays>1?'e':''} · Mo–Do`;}
   else if(calcType==='weekend_day'){total=p.we_d*calcDays;km=p.km_d*calcDays;label=`${calcDays} Tag${calcDays>1?'e':''} · Fr–So`;}
-  else if(calcType==='full_we'){if(!p.we){priceEl.textContent='Anfragen';subEl.textContent='Kontakt per WhatsApp';kmEl.textContent='—';waEl.href='https://wa.me/4917664872989?text=Hallo%2C%20Preisanfrage%20Audi%20R8%20V10%20Wochenende.';return;}total=p.we;km=p.km_we;label='Komplett-Wochenende';}
-  else{if(!p.week){priceEl.textContent='Anfragen';subEl.textContent='Kontakt per WhatsApp';kmEl.textContent='—';waEl.href='https://wa.me/4917664872989?text=Hallo%2C%20Preisanfrage%20Audi%20R8%20V10%20Woche.';return;}total=p.week;km=p.km_week;label='Komplette Woche';}
+  else if(calcType==='full_we'){if(!p.we){priceEl.textContent='Anfragen';subEl.textContent='Kontakt per WhatsApp';kmEl.textContent='—';waEl.href=`https://wa.me/${waNum}?text=Hallo%2C%20Preisanfrage%20Audi%20R8%20V10%20Wochenende.`;return;}total=p.we;km=p.km_we;label='Komplett-Wochenende';}
+  else{if(!p.week){priceEl.textContent='Anfragen';subEl.textContent='Kontakt per WhatsApp';kmEl.textContent='—';waEl.href=`https://wa.me/${waNum}?text=Hallo%2C%20Preisanfrage%20Audi%20R8%20V10%20Woche.`;return;}total=p.week;km=p.km_week;label='Komplette Woche';}
 
   // animate price count-up
   const prev=parseInt(priceEl.textContent)||0;
@@ -1849,7 +1852,7 @@ function updateCalc(){
   kmEl.textContent=km;
 
   const msg=`Hallo, ich möchte den ${p.name} für ${label} mieten. Preis: ${total}€. Bitte melde dich!`;
-  waEl.href=`https://wa.me/4917664872989?text=${encodeURIComponent(msg)}`;
+  waEl.href=`https://wa.me/${waNum}?text=${encodeURIComponent(msg)}`;
 }
 
 document.querySelectorAll('.calc-car').forEach(el=>{
@@ -2011,6 +2014,28 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
         else if(bind==='we_d-tag'){el.textContent='';el.appendChild(document.createTextNode(c.prices.we_d?c.prices.we_d+'€':'Anfrage'));if(c.prices.we_d){var s=document.createElement('span');s.className='mob-cps';s.textContent='/Tag';el.appendChild(s);}}
       });
     });
+
+    // Update contact links sitewide
+    if(cfg.contact){
+      if(cfg.contact.whatsapp)waNum=cfg.contact.whatsapp;
+      if(cfg.contact.phone)phoneNum=cfg.contact.phone;
+      document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){
+        var old=a.href;
+        a.href=old.replace(/wa\.me\/\d+/,'wa.me/'+waNum);
+      });
+      document.querySelectorAll('a[href*="tel:"]').forEach(function(a){
+        a.href='tel:+'+waNum;
+      });
+      document.querySelectorAll('a.bph').forEach(function(a){
+        a.textContent='📞 '+phoneNum;
+        a.href='tel:+'+waNum;
+      });
+      document.querySelectorAll('.bk-phone a').forEach(function(a){
+        a.textContent=phoneNum;
+        a.href='tel:+'+waNum;
+      });
+      updateCalc();
+    }
 
     // Banner
     if(cfg.banner&&cfg.banner.active&&cfg.banner.text){

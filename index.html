@@ -2085,11 +2085,20 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
       cls.className='promo-close';
       cls.textContent='✕';
       cls.setAttribute('aria-label','Banner schließen');
-      cls.addEventListener('click',function(e){e.stopPropagation();b.style.transform='translateY(-100%)';setTimeout(function(){b.remove();document.body.style.paddingTop='0';},300);});
+      cls.addEventListener('click',function(e){
+        e.stopPropagation();
+        b.style.transform='translateY(-100%)';
+        setTimeout(function(){
+          b.remove();
+          document.body.style.paddingTop='0';
+          document.querySelector('nav').style.top='0';
+        },300);
+      });
       inner.appendChild(cls);
       b.appendChild(inner);
       document.body.prepend(b);
       document.body.style.paddingTop='44px';
+      document.querySelector('nav').style.top='44px';
       // Slide in
       requestAnimationFrame(function(){b.style.transform='translateY(0)';});
     }

@@ -302,6 +302,10 @@ function renderCars() {
     var toggle = el('div', { className: 'car-toggle' });
     var sw = switchEl(c.visible, function(e) {
       e.stopPropagation();
+      if (!e.target.checked && !confirm(c.name + ' wirklich auf der Website ausblenden?')) {
+        e.target.checked = true;
+        return;
+      }
       config.cars[id].visible = e.target.checked;
       markDirty();
       renderCars();
@@ -415,6 +419,8 @@ function markDirty() {
 
 // ─── SAVE ───
 async function saveConfig() {
+  if (!confirm('Änderungen speichern und auf der Website übernehmen?')) return;
+
   config.contact = {
     phone: document.getElementById('cfg-phone').value.trim(),
     whatsapp: document.getElementById('cfg-whatsapp').value.trim()
@@ -450,6 +456,11 @@ async function saveConfig() {
     showToast(e.message, 'error');
   }
 }
+
+// ─── SCHUTZ: Warnung bei ungespeicherten Änderungen ───
+window.addEventListener('beforeunload', function(e) {
+  if (dirty) { e.preventDefault(); e.returnValue = ''; }
+});
 
 // ─── TOAST ───
 function showToast(msg, type) {

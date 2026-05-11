@@ -888,6 +888,24 @@ footer{padding:32px 16px 20px}
 .cookie-reset{font-size:10px}
 
 }
+
+/* ─── PROMO BANNER ─── */
+.promo-banner{position:fixed;top:0;left:0;right:0;z-index:9999;background:linear-gradient(90deg,#1a1a1a 0%,var(--red) 50%,#1a1a1a 100%);background-size:200% 100%;animation:bannerShimmer 3s ease infinite;transform:translateY(-100%);transition:transform .4s cubic-bezier(.4,0,.2,1);box-shadow:0 2px 20px rgba(200,16,46,.3)}
+.promo-inner{display:flex;align-items:center;justify-content:center;gap:12px;padding:11px 48px 11px 16px;max-width:900px;margin:0 auto}
+.promo-dot{width:8px;height:8px;border-radius:50%;background:#fff;flex-shrink:0;animation:promoPulse 1.5s ease infinite}
+.promo-text{font-size:13px;font-weight:700;letter-spacing:.5px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.promo-cta{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--red);background:#fff;padding:5px 14px;border-radius:4px;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:all .2s}
+.promo-cta:hover{background:#f0f0f0;transform:scale(1.05)}
+.promo-close{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,.6);font-size:14px;cursor:pointer;padding:4px 8px;transition:color .2s}
+.promo-close:hover{color:#fff}
+@keyframes bannerShimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@keyframes promoPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+@media(max-width:768px){
+.promo-inner{gap:8px;padding:10px 40px 10px 12px}
+.promo-text{font-size:11px}
+.promo-cta{font-size:10px;padding:4px 10px}
+}
+
 </style>
 </head>
 <body>
@@ -2037,14 +2055,43 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
       updateCalc();
     }
 
-    // Banner
+    // Banner — premium animated
     if(cfg.banner&&cfg.banner.active&&cfg.banner.text){
       var b=document.createElement('div');
-      b.style.cssText='position:fixed;top:0;left:0;right:0;z-index:9999;background:var(--red);color:#fff;text-align:center;padding:10px 16px;font-size:12px;font-weight:700;letter-spacing:1px;cursor:pointer';
-      b.textContent=cfg.banner.text;
-      b.addEventListener('click',function(){b.remove();document.body.style.paddingTop='0';});
+      b.className='promo-banner';
+      b.innerHTML='';
+      // Inner wrapper
+      var inner=document.createElement('div');
+      inner.className='promo-inner';
+      // Pulse dot
+      var dot=document.createElement('span');
+      dot.className='promo-dot';
+      inner.appendChild(dot);
+      // Text
+      var txt=document.createElement('span');
+      txt.className='promo-text';
+      txt.textContent=cfg.banner.text;
+      inner.appendChild(txt);
+      // CTA
+      var cta=document.createElement('a');
+      cta.className='promo-cta';
+      cta.href='https://wa.me/'+waNum+'?text='+encodeURIComponent('Hallo, ich habe eure Aktion gesehen!');
+      cta.target='_blank';
+      cta.rel='noopener';
+      cta.textContent='Jetzt sichern →';
+      inner.appendChild(cta);
+      // Close btn
+      var cls=document.createElement('button');
+      cls.className='promo-close';
+      cls.textContent='✕';
+      cls.setAttribute('aria-label','Banner schließen');
+      cls.addEventListener('click',function(e){e.stopPropagation();b.style.transform='translateY(-100%)';setTimeout(function(){b.remove();document.body.style.paddingTop='0';},300);});
+      inner.appendChild(cls);
+      b.appendChild(inner);
       document.body.prepend(b);
-      document.body.style.paddingTop='38px';
+      document.body.style.paddingTop='44px';
+      // Slide in
+      requestAnimationFrame(function(){b.style.transform='translateY(0)';});
     }
   }catch(e){/* silent fail — hardcoded values stay */}
 })();

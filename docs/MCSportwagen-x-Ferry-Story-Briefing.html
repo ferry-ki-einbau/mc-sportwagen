@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Story-Briefing — MCSportwagen x Ferry</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: #1a1a1a;
+    background: #ffffff;
+    line-height: 1.6;
+    padding: 48px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 48px;
+    border-bottom: 3px solid #1a1a1a;
+    padding-bottom: 16px;
+  }
+  .header h1 { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; }
+  .header .collab { font-size: 15px; color: #e63946; font-weight: 600; }
+
+  .intro {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 40px;
+    font-size: 14px;
+    color: #444;
+    line-height: 1.7;
+  }
+
+  .step {
+    margin-bottom: 36px;
+    position: relative;
+    padding-left: 56px;
+  }
+  .step-number {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    background: #e63946;
+    color: white;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+  }
+  .step-number.reminder { background: #457b9d; font-size: 16px; }
+  .step-number.setup { background: #2d6a4f; font-size: 14px; }
+  .step h2 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    padding-top: 6px;
+  }
+  .step h2 .duration {
+    font-weight: 400;
+    color: #888;
+    font-size: 14px;
+  }
+
+  .script {
+    border-left: 3px solid #ddd;
+    padding: 16px 20px;
+    margin: 12px 0;
+    background: #fafafa;
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.8;
+  }
+
+  .hint {
+    font-size: 13px;
+    color: #888;
+    margin-top: 8px;
+  }
+
+  .important {
+    background: #fff3f3;
+    border: 1px solid #e63946;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-top: 16px;
+    font-size: 13px;
+    color: #c0392b;
+    line-height: 1.7;
+    font-weight: 500;
+  }
+  .important strong {
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    color: #e63946;
+  }
+
+  .overlay-box {
+    background: #1a1a1a;
+    border: 2px solid #e63946;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 16px 0;
+    text-align: center;
+  }
+  .overlay-box .url {
+    font-size: 24px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+  }
+  .overlay-box .rabatt {
+    font-size: 14px;
+    color: #e63946;
+    font-weight: 600;
+    margin-top: 6px;
+  }
+  .overlay-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #888;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  .timeline {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 13px;
+  }
+  .timeline th {
+    text-align: left;
+    padding: 10px 14px;
+    background: #f0f0f0;
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .timeline td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #eee;
+  }
+  .timeline tr:last-child td { border-bottom: none; }
+
+  .bottom-box {
+    background: #1a1a1a;
+    color: white;
+    border-radius: 8px;
+    padding: 16px 24px;
+    margin-top: 12px;
+  }
+  .bottom-box .label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #e63946;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .bottom-box .value { font-size: 16px; font-weight: 600; }
+
+  hr { border: none; border-top: 1px solid #eee; margin: 32px 0; }
+
+  .footer-note {
+    margin-top: 40px;
+    font-size: 13px;
+    color: #888;
+    text-align: center;
+    font-style: italic;
+  }
+
+  @media print {
+    body { padding: 32px; }
+    .step { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>TIKTOK-BRIEFING</h1>
+  <span class="collab">MCSportwagen x Ferry Kooperation</span>
+</div>
+
+<div class="intro">
+  <strong>Format:</strong> Normales Car-Content Reel (Sound, &Uuml;bergabe, Cold Start &mdash; was am besten performt). Am Ende 5 Sekunden Plug f&uuml;r Ferry. Hochformat 9:16. Alles freestyle, nicht ablesen.
+</div>
+
+<!-- Setup -->
+<div class="step">
+  <div class="step-number setup">&check;</div>
+  <h2>Vorbereitung <span class="duration">(einmalig)</span></h2>
+  <p style="font-size:14px; color:#333; line-height:1.7;">
+    <strong>Bio-Link &auml;ndern</strong> auf: <code style="background:#f0f0f0;padding:2px 6px;border-radius:4px;font-size:13px;">ferryemirer.de/zusammenarbeit-anfragen</code><br>
+    Link bleibt <strong>4 Wochen</strong> drin. Danach zur&uuml;ck zu deinem eigenen Link.
+  </p>
+</div>
+
+<hr>
+
+<!-- Step 1 -->
+<div class="step">
+  <div class="step-number">1</div>
+  <h2>Car-Content Reel + Plug am Ende <span class="duration">(25-35 Sek)</span></h2>
+
+  <p style="font-size:13px;color:#666;margin-bottom:12px;"><strong>Erste 20-25 Sek:</strong> Dein normaler Car-Content. Cold Start, &Uuml;bergabe, Sound Check &mdash; was bei dir am besten l&auml;uft.</p>
+
+  <div class="script">
+    <strong style="font-style:normal;color:#666;font-size:12px;">LETZTE 5-8 SEKUNDEN:</strong><br><br>
+    &bdquo;&Uuml;brigens &mdash; viele fragen wer die Website gemacht hat. Das war Ferry, der macht Websites f&uuml;r Dienstleister und Unternehmen. Checkt seine Seite ab &mdash; sagt dass ihr von MCSportwagen kommt und ihr bekommt 500 Euro Rabatt. Nur f&uuml;r kurze Zeit.&ldquo;
+  </div>
+
+  <p class="overlay-label">W&auml;hrend dem Plug einblenden:</p>
+  <div class="overlay-box">
+    <div class="url">ferryemirer.de</div>
+    <div class="rabatt">500&euro; Rabatt &mdash; sag dass du von MCSportwagen kommst</div>
+  </div>
+
+  <div class="important">
+    <strong>Wichtig beim Einblenden:</strong>
+    - URL <strong>ferryemirer.de</strong> gro&szlig; + gut lesbar im Video (wei&szlig; auf dunkel)<br>
+    - Mindestens <strong>4 Sekunden</strong> sichtbar &mdash; damit Leute screenshotten k&ouml;nnen<br>
+    - Text drunter: &bdquo;500&euro; Rabatt &mdash; sag dass du von MCSportwagen kommst&ldquo;<br>
+    - Zus&auml;tzlich in der Caption: &bdquo;Link in Bio ⬇️&ldquo; als Backup
+  </div>
+</div>
+
+<hr>
+
+<!-- Step 2 -->
+<div class="step">
+  <div class="step-number reminder">R</div>
+  <h2>Reminder-Reel &mdash; 1 Woche sp&auml;ter <span class="duration">(20-30 Sek)</span></h2>
+
+  <p style="font-size:13px;color:#666;margin-bottom:12px;">Wieder normaler Car-Content, am Ende kurzer Reminder:</p>
+
+  <div class="script">
+    &bdquo;Kurze Erinnerung &mdash; der 500-Euro-Rabatt &uuml;ber meinen Link l&auml;uft bald aus. Ferry macht echt krasse Arbeit, schaut euch meine Seite an als Beweis. Link in der Bio.&ldquo;
+  </div>
+
+  <p class="hint">Gleiche URL einblenden: <strong>ferryemirer.de</strong> + Rabatt-Text. Caption: &bdquo;Link in Bio ⬇️&ldquo;</p>
+</div>
+
+<hr>
+
+<!-- Zeitplan -->
+<div class="step">
+  <div class="step-number" style="background:#333;font-size:14px;">&#128197;</div>
+  <h2>Zeitplan</h2>
+
+  <table class="timeline">
+    <tr>
+      <th>Wann</th>
+      <th>Was</th>
+    </tr>
+    <tr>
+      <td><strong>Tag 1</strong></td>
+      <td>Bio-Link &auml;ndern auf ferryemirer.de/zusammenarbeit-anfragen</td>
+    </tr>
+    <tr>
+      <td><strong>Woche 1</strong></td>
+      <td>Erstes Reel mit Plug + URL eingeblendet</td>
+    </tr>
+    <tr>
+      <td><strong>Woche 2</strong></td>
+      <td>Reminder-Reel + URL eingeblendet</td>
+    </tr>
+    <tr>
+      <td><strong>Woche 3-4</strong></td>
+      <td>Normaler Car-Content, Bio-Link bleibt drin</td>
+    </tr>
+    <tr>
+      <td><strong>Nach 4 Wochen</strong></td>
+      <td>Bio-Link zur&uuml;ck auf eigenen Link &auml;ndern</td>
+    </tr>
+  </table>
+</div>
+
+<hr>
+
+<!-- Doppelter Funnel -->
+<div class="step">
+  <div class="step-number" style="background:#333;font-size:13px;">&#127919;</div>
+  <h2>Wie die Leute zu Ferry kommen</h2>
+  <div style="font-size:14px;line-height:1.8;color:#333;">
+    <strong>Weg 1:</strong> URL im Video sehen &rarr; screenshotten oder merken &rarr; <code>ferryemirer.de</code> im Browser &ouml;ffnen<br>
+    <strong>Weg 2:</strong> &bdquo;Link in Bio&ldquo; lesen &rarr; auf Profil gehen &rarr; Bio-Link klicken<br>
+    <strong>Weg 3:</strong> &bdquo;MCSportwagen&ldquo; erw&auml;hnen &rarr; Ferry wei&szlig; woher die Anfrage kommt = Tracking
+  </div>
+</div>
+
+<hr>
+
+<div class="bottom-box">
+  <div class="label">Bio-Link (4 Wochen aktiv)</div>
+  <div class="value">https://www.ferryemirer.de/zusammenarbeit-anfragen</div>
+</div>
+
+<div class="bottom-box" style="margin-top:10px">
+  <div class="label">Im Video taggen</div>
+  <div class="value">@ferry.emirer</div>
+</div>
+
+<p class="footer-note">
+  Alles freestyle &mdash; nicht ablesen, locker in deinen Worten.<br>
+  Car-Content = dein Reel. Die letzten 5 Sekunden = Plug. Nicht umgekehrt.
+</p>
+
+</body>
+</html>

@@ -34,4 +34,4 @@ Allow: /
 User-agent: meta-externalagent
 Allow: /
 
-Sitemap: https://mcsportwagen.de/sitemap.xml
+Sitemap: https://www.mcsportwagen.de/sitemap.xml
